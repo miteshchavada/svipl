@@ -1,11 +1,9 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {% block content %}
-
-<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">Info List</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -14,7 +12,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
+                            Info List
 				<div style="float:right; margin-top:-15px;" class="panel-heading"><a href="add"><button type="button" class="btn btn-primary btn-sm">Add Product</button></a></div>
                         </div>
                         <!-- /.panel-heading -->
@@ -35,7 +33,7 @@
 					<tr class="gradeA">
 					    <td>{{ loop.index }}</td>
 					    <td>{{ inf.title }}</td>
-					    <td>{{ inf.description }}</td>
+					    <td width="400px;">{{ inf.description }}</td>
                                             <td>{{ inf.createdAt|date }}</td>
 					    <td><a href="edit?id={{ inf.id }}" class="btn btn-primary">edit</a>
 					    <a href="delete?id={{ inf.id }}" onclick="return confirm('are sure delete?')" class="btn btn-danger">delete</a></td>

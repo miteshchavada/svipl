@@ -3,15 +3,12 @@
 {% block content %}
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables</h1>
+                <h1 class="page-header">Image Edit Form</h1>
             </div>
-            <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            
                 <center>
-                
                 <form action="{{ path('acme_image_edit', {'id': id } ) }}" method="post" id="form" enctype="multipart/form-data" name="form" class="form-group" novalidate="novalidate">
                 <div class="col-sm-6 error_div">    
                 {{ form_errors(form.image)}}

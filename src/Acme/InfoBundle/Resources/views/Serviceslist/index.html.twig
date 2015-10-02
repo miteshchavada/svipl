@@ -1,20 +1,16 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {% block content %}
-
-<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">Services List</h1>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
+                            Services List
 				<div style="float:right; margin-top:-15px;" class="panel-heading"><a href="services/add"><button type="button" class="btn btn-primary btn-sm">Add Services</button></a></div>
                         </div>
                         <!-- /.panel-heading -->
@@ -36,8 +32,8 @@
                                             <td>{{ loop.index }}</td>
                                             <td>{{ service.title }}</td>
                                             <td><img src="{{asset(['uploads/services/',service.id,'/',service.image]|join)}}" style="width:80px; height: 50px;" /></td>
-                                            <td class="center">{{ service.description }}</td>
-                                            <td class="center">
+                                            <td width="350px;">{{ service.description }}</td>
+                                            <td>
 						<a href="services/edit?id={{ service.id }}" class="btn btn-primary">edit</a>
         					<a href="services/delete?id={{ service.id }}" class="btn btn-danger" onclick="return confirm('are sure delete?')">delete</a></li>
 					    </td>
@@ -47,13 +43,8 @@
 				    <!-- div>{{ paginator|raw }}</div--> 
                                 </table>
                             </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-
 {% endblock %}
 {% endblock %}

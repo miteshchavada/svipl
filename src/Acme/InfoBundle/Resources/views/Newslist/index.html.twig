@@ -1,11 +1,9 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {% block content %}
-
-<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">News List</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -14,7 +12,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
+                            News List
 				<div style="float:right; margin-top:-15px;" class="panel-heading"><a href="news/add"><button type="button" class="btn btn-primary btn-sm">Add News</button></a></div>
                         </div>
                         <!-- /.panel-heading -->
@@ -36,7 +34,7 @@
                                             <td>{{ loop.index }}</td>
                                             <td>{{ product.title }}</td>
                                             <td><img src="{{asset(['uploads/news/',product.id,'/',product.image]|join)}}" style="width:80px; height: 50px;" /></td>
-                                            <td>{{ product.description }}</td>
+                                            <td width="250px;">{{ product.description }}</td>
                                             <td>
 						<a href="news/edit?id={{ product.id }}" class="btn btn-primary">edit</a>
         					<a href="news/delete?id={{ product.id }}" class="btn btn-danger" onclick="return confirm('are sure delete?')">delete</a></li>
@@ -47,13 +45,8 @@
 				    <!-- div>{{ paginator|raw }}</div--> 
                                 </table>
                             </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-
 {% endblock %}
 {% endblock %}
