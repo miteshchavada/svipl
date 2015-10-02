@@ -1,0 +1,66 @@
+{% extends '::common.html.twig' %}
+{% block body %}
+    <div class="body3">
+        <div class="main zerogrid">
+            <!-- content -->
+            <article id="content">
+                <div class="wrapper tabs">
+                    {% set i = 0 %}
+                    {% set divNo = 1 %}
+                    {% for new in news%}
+
+                        {% if i%3 == 0 and divNo != 1 %}
+                        </div>
+                    {% endif %}
+
+                    {% if i%3 == 0 %}
+                        <div class="tab-content" id="tab{{ divNo }}">
+                            {% set divNo = divNo + 1 %}
+                        {% endif %}
+
+                        <h5><span class="dropcap"><strong>{{new.id}}</strong><span>06</span></span>Lorem ipsum dolor sit amet consectetur adipisicing elit</h5>
+                        <div class="wrapper pad_bot2">
+                            <figure class="left marg_right1"><img src="{{asset(['uploads/news/',new.id,'/',new.image]|join)}}" alt=""></figure>
+                            <p class="pad_bot1" id="desc_{{ new.id }}" style="display:block;">{{ new.description[0:200] }}</p>
+                            <p class="pad_bot1" id="pname_{{ new.id }}" style="display:none;">{{ new.description }}</p>
+                            <a href="Javascript:toggle('pname_{{ new.id }}','desc_{{ new.id }}');" class="link1">Read More</a>
+                        </div>
+
+                        {% set i = i + 1 %}
+
+                    {% endfor %}
+                </div>
+
+                <ul class="nav">
+                    {% for j in 1..(count / 3)|round(0, 'ceil') %}
+                        <li class="selected"><a href="#tab{{ loop.index }}">{{ loop.index }}</a></li>
+                        {% endfor %}
+                </ul>
+            </article>    
+        </div>
+    </div>            
+    {{ include('followUs.html.twig') }}
+    {{ include('footer.html.twig') }}                                      
+    <script type="text/javascript"> Cufon.now();</script>
+    <script>
+        $(document).ready(function () {
+            tabs.init();
+        })
+    </script>
+    <script type="text/javascript">
+        function toggle(obj, obj1) {
+
+            var toggle = document.getElementById(obj);
+            var desc = document.getElementById(obj1);
+
+            if (toggle.style.display != "none") {
+                toggle.style.display = "none";
+                desc.style.display = "block";
+            }
+            else {
+                toggle.style.display = "block";
+                desc.style.display = "none";
+            }
+        }
+    </script>
+{% endblock%}

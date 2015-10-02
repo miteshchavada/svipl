@@ -1,0 +1,50 @@
+{% extends '::common.html.twig' %}
+{% block body %}
+<div class="body3">
+		<div class="main zerogrid">
+<!-- content -->
+			<article id="content">
+                                <div class="wrapper">
+                                    {% for product in products %}
+                                        <section class="col-1-3">
+					<div class="wrap-col">
+						<div class="wrapper pad_bot2">
+							<h3><span class="dropcap">{{ loop.index }}</span>{{ product.name }}</h3>
+							<figure><img src="{{asset(['uploads/products/',product.id,'/',product.image]|join)}}" alt=""></figure>
+							<p class="pad_bot1" id="desc_{{ product.id }}" style="display:block;">{{ product.description[0:50] }}</p>
+                            				<p class="pad_bot1" id="pname_{{ product.id }}" style="display:none;">{{ product.description }}</p>
+							<a href="Javascript:toggle('pname_{{ product.id }}','desc_{{ product.id }}');" class="link1">Read More</a>
+							<a href="/products/cart?id={{ product.id }}">Add To Cart</a>
+						</div>
+					</div>
+					</section>
+                                    {% endfor %}
+                                </div>
+			</article>
+		</div>
+	</div>
+	{{ include('followUs.html.twig') }}
+        {{ include('footer.html.twig') }}
+<script type="text/javascript"> Cufon.now(); </script>
+<script>
+	$(document).ready(function() {
+		tabs.init();
+	})
+</script>
+<script type="text/javascript">
+function toggle(obj,obj1) {
+
+  var toggle = document.getElementById(obj);
+  var desc = document.getElementById(obj1);
+  
+  if (toggle.style.display != "none") {
+    toggle.style.display = "none";
+    desc.style.display = "block";
+  }
+  else {
+    toggle.style.display = "block";
+    desc.style.display = "none";
+  }
+}
+</script>
+{% endblock%}

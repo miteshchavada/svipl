@@ -1,0 +1,7 @@
+parameters:
+#    acme_image.example.class: Acme\ImageBundle\Example
+
+services:
+#    acme_image.example:
+#        class: %acme_image.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

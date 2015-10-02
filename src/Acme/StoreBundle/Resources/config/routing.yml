@@ -1,0 +1,35 @@
+status:
+    pattern:  /store/status
+    defaults: { _controller: AcmeStoreBundle:Default:status }
+
+search:
+    pattern:  /search
+    defaults: { _controller: AcmeStoreBundle:Default:search}
+    
+sorting:
+    pattern:  /store/sorting
+    defaults: { _controller: AcmeStoreBundle:Default:sorting }
+
+acme_store:
+    path:     /store/
+    defaults: { _controller: AcmeStoreBundle:Default:index }
+
+acme_store_product_list:
+    pattern:  /product/{page}
+    defaults: { _controller: AcmeStoreBundle:Default:list,page:1 }
+
+add:
+    pattern:  /store/add
+    defaults: { _controller: AcmeStoreBundle:Default:add }
+
+addproduct:
+    pattern:  /addproduct
+    defaults: { _controller: AcmeStoreBundle:Default:addproduct }
+
+edit:
+    pattern:  /store/edit
+    defaults: { _controller: AcmeStoreBundle:Default:edit }
+
+delete:
+    pattern:  /store/delete
+    defaults: { _controller: AcmeStoreBundle:Default:delete }

@@ -1,0 +1,21 @@
+{% if app.request.get('_route') == 'acme_home' %}
+    {% set foo = 'acme_home' %}
+{% elseif app.request.get('_route') == 'news' %}
+    {% set foo = 'news' %}
+{% elseif app.request.get('_route') == 'services' %}
+    {% set foo = 'services' %}
+{% elseif app.request.get('_route') == 'products' %}
+    {% set foo = 'products' %}
+{% elseif app.request.get('_route') == 'contact' %}
+    {% set foo = 'contact' %}
+{% endif %}
+<form action="{{ path(foo) }}" method="post" {{ form_enctype(form) }} id="newsletter">
+    <div style="color:red;">{{ form_errors(form.email)}}</div>
+    <div>
+        <div class="wrapper">
+            {{ form_widget(form.email, {'attr': {'onfocus': 'if(this.value =="Type Your Email Here" ) this.value=""', 'onblur': 'if(this.value=="") this.value="Type Your Email Here"','value':"",'class':'input'} }) }}
+        </div>
+        <input type="submit" formnovalidate value="Subscribe" name="insert"/>
+        <!--a href="#" name="subscribe" class="button" onclick="document.getElementById('newsletter').submit()">Subscribe</a-->
+    </div>
+</form>

@@ -1,0 +1,19 @@
+Acme\ImageBundle\Entity\Image:
+    type: entity
+    table: null
+    repositoryClass: Acme\ImageBundle\Entity\ImageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        image:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+    lifecycleCallbacks: {  }

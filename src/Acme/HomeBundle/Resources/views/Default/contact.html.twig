@@ -1,0 +1,57 @@
+{% extends '::common.html.twig' %}
+{% block body %}
+    <div class="body3">
+        <div class="main zerogrid">
+            <!-- content -->
+            <article id="content">
+                <div class="wrapper row">
+                    <section class="col-3-4">
+                        <div class="wrap-col">
+                            <h2 class="under">Contact form</h2>
+                            {% for flashMessage in app.session.flashbag.get('notice') %}
+                                <div class="flash notice">
+                                    {{ flashMessage }}
+                                </div>
+                            {% endfor %}
+
+                            <form id="ContactForm" method="post" action="sendEmail" >
+                                <div>
+                                    <div  class="wrapper">
+                                        <span>Your Name:</span>
+                                        <input type="text" class="input" name="name">
+                                    </div>
+                                    <div  class="wrapper">
+                                        <span>Your City:</span>
+                                        <input type="text" class="input" name="city">
+                                    </div>
+                                    <div  class="wrapper">
+                                        <span>Your E-mail:</span>
+                                        <input type="text" class="input" name="email">
+                                    </div>
+                                    <div  class="textarea_box">
+                                        <span>Your Message:</span>
+                                        <textarea name="description" cols="1" rows="1"></textarea>
+                                    </div>
+                                    <a href="#" onClick="document.getElementById('ContactForm').submit()">Send</a>
+                                    <a href="#" onClick="document.getElementById('ContactForm').reset()">Clear</a>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    {% for contact in contactus %}
+                        {{ contact.description|raw }}
+                    {% endfor %}
+                </div>
+
+            </article>
+        </div>
+    </div>
+    {{ include('followUs.html.twig') }}
+    {{ include('footer.html.twig') }}
+    <script type="text/javascript"> Cufon.now();</script>
+    <script>
+        $(document).ready(function () {
+            tabs.init();
+        })
+    </script>
+{% endblock%}

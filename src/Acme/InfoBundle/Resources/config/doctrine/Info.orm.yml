@@ -1,0 +1,21 @@
+Acme\InfoBundle\Entity\Info:
+    type: entity
+    table: null
+    repositoryClass: Acme\InfoBundle\Entity\InfoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        description:
+            type: text
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+    lifecycleCallbacks: {  }

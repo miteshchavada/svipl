@@ -1,0 +1,68 @@
+{% extends '::front.html.twig' %}
+{% block body %}
+    <div class="body3">
+        <div class="main zerogrid">
+            <!-- content -->
+            <article id="content">
+                <div class="wrapper row">
+                    {% for inf in info %}
+                        <section class="col-1-4">
+                            <div class="wrap-col">
+                                <h3><span class="dropcap">{{ loop.index }}</span>{{ inf.title }}</h3>
+                                <p class="pad_bot1" id="desc_{{ inf.id }}" style="display:block;">{{ inf.description[0:50] }}</p>
+                                <p class="pad_bot1" id="pname_{{ inf.id }}" style="display:none;">{{ inf.description }}</p>
+                                <a href="Javascript:toggle('pname_{{ inf.id }}','desc_{{ inf.id }}');" class="link1">Read More</a>
+                            </div>
+                        </section>
+                    {% endfor %}
+                </div>
+                <div class="wrapper row">
+                    {% for fnt in front %}
+                        {{ fnt.description|raw }}
+                    {% endfor %}
+                    <section class="col-1-4">
+                        <div class="wrap-col">
+                            <h2>Testimonials</h2>
+                            <div class="testimonials">
+                                <div id="testimonials">
+                                    <ul>
+                                        {% for testi in testimonials %}
+                                            <li>
+                                                <div>
+                                                    {{ testi.description }}
+                                                </div>
+                                                <span><strong class="color1">{{ testi.name }},</strong> <br>
+                                                    {{ testi.post }}</span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <a href="#" class="up"></a>
+                                <a href="#" class="down"></a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </div>
+    {{ include('followUs.html.twig') }}
+    {{ include('footer.html.twig') }}                                                             
+    <script type="text/javascript"> Cufon.now();</script>
+    <script type="text/javascript">
+        function toggle(obj, obj1) {
+
+            var toggle = document.getElementById(obj);
+            var desc = document.getElementById(obj1);
+
+            if (toggle.style.display != "none") {
+                toggle.style.display = "none";
+                desc.style.display = "block";
+            }
+            else {
+                toggle.style.display = "block";
+                desc.style.display = "none";
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,23 @@
+acme_home:
+    path:     /home/
+    defaults: { _controller: AcmeHomeBundle:Default:index }
+
+news:
+    path:    /news/
+    defaults: { _controller: AcmeHomeBundle:Default:news }
+
+services:
+    path:    /services/
+    defaults: { _controller: AcmeHomeBundle:Default:services }
+    
+products:
+    path:   /products/
+    defaults: { _controller: AcmeHomeBundle:Default:products }
+    
+contact:
+    path:   /contact/
+    defaults: { _controller: AcmeHomeBundle:Default:contact }
+    
+contact_sendEmail:
+    path:   /contact/sendEmail
+    defaults: { _controller: AcmeHomeBundle:Default:sendEmail }    

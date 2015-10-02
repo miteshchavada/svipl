@@ -1,0 +1,35 @@
+{% extends '::common.html.twig' %}
+{% block body %}
+<div class="body3">
+		<div class="main zerogrid">
+<!-- content -->
+			<article id="content" style="padding-top:0px;">
+				<div class="wrapper">
+					<h2 class="under">Overview of Our Main Business Courses</h2>
+					<div class="wrapper">
+                                                {% for ser in services %}
+                                                    <section class="col-1-3">
+                                                    <div class="wrap-col">
+                                                            <div class="wrapper pad_bot1">    
+                                                                <figure class="left marg_right1"><img src="{{asset(['uploads/services/',ser.id,'/',ser.image]|join)}}" alt=""></figure>
+                                                                    <h6>{{ ser.title }}</h6>
+                                                                    <p>{{ ser.description }}</p>
+                                                            </div>
+                                                    </div>
+                                                    </section>
+                                                {% endfor %}  
+					</div>
+				</div>
+
+			</article>
+		</div>
+        </div>                                        
+	{{ include('followUs.html.twig') }}
+        {{ include('footer.html.twig') }}
+<script type="text/javascript"> Cufon.now(); </script>
+<script>
+	$(document).ready(function() {
+		tabs.init();
+	})
+</script>
+{% endblock%}

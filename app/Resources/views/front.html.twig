@@ -1,0 +1,118 @@
+{# app/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Test Application{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/acmehome/css/reset.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/acmehome/css/layout.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/acmehome/css/style.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/acmehome/css/zerogrid.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/acmehome/css/responsive.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/acmehome/css/responsiveslides.css') }}" rel="stylesheet">
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bundles/acmehome/js/jquery-1.6.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/cufon-yui.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/cufon-replace.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/Swis721_Cn_BT_400.font.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/Swis721_Cn_BT_700.font.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/jquery.easing.1.3.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/tms-0.3.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/tms_presets.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/jcarousellite.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/script.js') }}"></script>
+            <script src="{{ asset('bundles/acmehome/js/css3-mediaqueries.js') }}"></script>
+            <!--[if lt IE 9]>
+                  <script type="text/javascript" src="{{ asset('bundles/acmehome/js/html5.js') }}"></script>
+                  <style type="text/css">
+                          .bg{ behavior: url(js/PIE.htc); }
+                  </style>
+            <![endif]-->
+            <!--[if lt IE 7]>
+                    <div style=' clear: both; text-align:center; position: relative;'>
+                            <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0"  alt="" /></a>
+                    </div>
+            <![endif]-->
+
+            <script src="{{ asset('bundles/acmehome/js/responsiveslides.js') }}"></script>
+            <script>
+                $(function () {
+                    $("#slider").responsiveSlides({
+                        auto: true,
+                        pager: false,
+                        nav: true,
+                        speed: 500,
+                        maxwidth: 960,
+                        namespace: "centered-btns"
+                    });
+                });
+            </script>
+        {% endblock %}
+    </head>
+    <body id="page1">
+        <div id="sidebar">
+            <div class="body1">
+                <div class="body2">
+                    <div class="main zerogrid">
+                        <header>
+                            <div class="wrapper row">
+                                <h1><a href="{{ path('acme_home') }}" id="logo"><img src="{{ asset('bundles/acmehome/images/logo.png') }}" /></a></h1>
+                                <nav>
+                                    <ul id="menu">
+                                        {% if app.request.get('_route') == 'acme_home' %}
+                                            <li id="nav1" class="active"><a href="{{ path('acme_home') }}">Home<span>Welcome!</span></a></li>
+                                            {% else  %}
+                                            <li id="nav1"><a href="{{ path('acme_home') }}">Home<span>Welcome!</span></a></li>
+                                            {% endif %}
+                                            {% if app.request.get('_route') == 'news' %}
+                                            <li id="nav2" class="active"><a href="{{ path('news') }}">News<span>Fresh</span></a></li>
+                                            {% else %}
+                                            <li id="nav2"><a href="{{ path('news') }}">News<span>Fresh</span></a></li>
+                                            {% endif %}
+                                            {% if app.request.get('_route') == 'services' %}
+                                            <li id="nav3" class="active"><a href="{{ path('services') }}">Services<span>for you</span></a></li>
+                                            {% else %}
+                                            <li id="nav3"><a href="{{ path('services') }}">Services<span>for you</span></a></li>
+                                            {% endif %}
+                                            {% if app.request.get('_route') == 'products' %}
+                                            <li id="nav4" class="active"><a href="{{ path('products') }}">Products<span>The best</span></a></li>
+                                            {% else %}
+                                            <li id="nav4"><a href="{{ path('products') }}">Products<span>The best</span></a></li>
+                                            {% endif %}
+                                            {% if app.request.get('_route') == 'contact' %}
+                                            <li id="nav5" class="active"><a href="{{ path('contact') }}">Contacts<span>Our Address</span></a></li>
+                                            {% else %}
+                                            <li id="nav5"><a href="{{ path('contact') }}">Contacts<span>Our Address</span></a></li>
+                                            {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                            {% if app.request.get('_route') == 'acme_home' %}
+                                <div class="wrapper row">							
+                                    <div class="slider">							
+                                        <div class="rslides_container">
+                                            <ul class="rslides" id="slider">
+                                                {% for image in images %}
+                                                    <li><img src="{{asset(['uploads/',image.image]|join)}}" alt=""></li>
+                                                    {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>							
+                                </div>
+                            {% else %}
+                                <div class="wrapper row">
+                                    <div class="slider">
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </header>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% block body %}{% endblock %}
+</body>
+</html>
