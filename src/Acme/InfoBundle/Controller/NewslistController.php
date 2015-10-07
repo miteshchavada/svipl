@@ -84,7 +84,9 @@ class NewslistController extends Controller
                 if($_FILES['form']['name']['image'])
 		{
 			$new = $em->getRepository('AcmeInfoBundle:News')->find($id);
-			unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/news/'.$new->getId().'/'.$oldimg);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/news/'.$new->getId().'/'.$oldimg)){
+                            unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/news/'.$new->getId().'/'.$oldimg);
+                        }
 			$newimg = $form['image']->getData()->getClientOriginalName();
 			$new->setImage($newimg);
 			$em->persist($new);

@@ -59,9 +59,9 @@ class DefaultController extends Controller
         //$languages = $repository->getProductListWithPagination($order_by, $paginator->getOffset(), $paginator->getLimit());
         //Finally - return array to templating engine for displaying data.
         
-    	$products = $this->get('doctrine')->getRepository('AcmeStoreBundle:Product')->findAll();
+    	$products = $this->get('doctrine')->getRepository('AcmeStoreBundle:Product')->findBy(array(), array('id' => 'DESC'));
     	 
-        $products = $repository->getProductListWithPagination($sort_direction, $paginator->getOffset(), $paginator->getLimit());
+        //$products = $repository->getProductListWithPagination($sort_direction, $paginator->getOffset(), $paginator->getLimit());
         //return array('products' => $products, 'sort_dir' => $sort_direction, 'paginator' => $strPaginator);
         return $this->render('AcmeStoreBundle:Default:index.html.twig',array('products'=>$products,'sort_dir' => $sort_direction,'paginator'=>$strPaginator,'count'=>$languagesCount));
     }   

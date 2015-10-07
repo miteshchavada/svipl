@@ -21,7 +21,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $image = $this->get('doctrine')->getRepository('AcmeImageBundle:Image')->findAll();
+        //$image = $this->get('doctrine')->getRepository('AcmeImageBundle:Image')->findAll();
+        $image = $this->get('doctrine')->getRepository('AcmeImageBundle:Image')->findBy(array(), array('createdAt' => 'DESC'));
 	return $this->render('AcmeImageBundle:Default:index.html.twig',array('image'=>$image));
     }
     public function addAction(Request $request)
