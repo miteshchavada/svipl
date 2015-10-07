@@ -1,4 +1,4 @@
-ecommerce
+symfony2-bootstrap
 =========
 
 symfony2 ecommerce project
