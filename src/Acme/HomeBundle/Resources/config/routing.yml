@@ -21,3 +21,11 @@ contact:
 contact_sendEmail:
     path:   /contact/sendEmail
     defaults: { _controller: AcmeHomeBundle:Default:sendEmail }    
+    
+agentlogin:
+    path:   /agentlogin
+    defaults: { _controller: AcmeHomeBundle:Default:agentlogin }
+
+agentlogout:
+    path:   /agentlogout
+    defaults: { _controller: AcmeHomeBundle:Default:agentlogout }    

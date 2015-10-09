@@ -39,6 +39,13 @@
                 <div class="body5">
                     <div class="main zerogrid">
                         <!-- header -->
+                        {% if is_granted("ROLE_USER") %}
+                        <a href="{{ path('agentlogout') }}">
+                            <i class="fa fa-sign-out fa-fw"></i> Logout</a>    
+                        <i class="fa fa-user fa-fw"></i>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <i class="fa fa-caret-down"></i>
+                        {% else %}
+                            <a class="navbar-brand" href="{{ path('agentlogin')}}">Login</a>
+                        {% endif %}
                         <header>
                             <div class="wrapper rơw">
                                 <h1><a href="{{ path('acme_home') }}" id="logo"><img src="{{ asset('bundles/acmehome/images/logo.png') }}" /></a></h1>

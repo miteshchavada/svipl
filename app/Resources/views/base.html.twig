@@ -50,7 +50,6 @@
                 {% else %}    
                     <a class="navbar-brand" href="{{ path('fos_user_security_login')}}">SVIPL Admin</a>
                 {% endif %}    
-                
             </div>
             <!-- /.navbar-header -->
 
@@ -80,6 +79,9 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('acme_user') }}"><i class="fa fa-user fa-fw"></i>User</a></li>
+                        {% endif %}    
                         <li><a href="{{ path('acme_store') }}"><i class="fa fa-dashboard fa-fw"></i>Store</a></li>
                         <li><a href="{{ path('acme_image') }}"><i class="fa fa-table fa-fw"></i>Slider Image</a></li>
                         <li><a href="{{ path('acme_info') }}"><i class="fa fa-sitemap fa-fw"></i>Info</a></li>
@@ -112,11 +114,44 @@
     <script src="{{ asset('bundles/acmeuser/js/plugins/dataTables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('bundles/acmeuser/js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
     <script>
+        var oTable;
         $(document).ready(function () {
             $('#dataTables-example').dataTable();
         });
         $(document).ready(function () {
-            $('#dataTables-example1').dataTable();
+            oTable = $('#dataTables-example1').dataTable();
+        });
+        $(document).ready(function(){
+           $(".btn-status").click(function(){
+                id = $(this).attr('id');
+                $.ajax({
+                    url: "{{ path('acme_user_status') }}",
+                    type: "POST",
+                    data: {id : id},
+                    dataType: "json",
+                    beforeSend: function(){
+                        
+                    },
+                    success: function(result){
+                        //oTable.fnDraw();
+                        if(result.status == true){
+                            $("a#"+result.id).removeClass("btn-danger").addClass("btn-success").html("Enable");
+                        }else{
+                            $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
+                        }
+                        {#if(result.status == true){
+                            $("a.btn-status").removeClass("btn-danger");
+                            $("a.btn-status").addClass("btn-success");
+                        }else{
+                            $("a.btn-status").removeClass("btn-success");
+                            $("a.btn-status").addClass("btn-danger");
+                        }#}
+                    },
+                    error: function(e){
+                        alert(e);
+                    },
+                });
+           }); 
         });
     </script>
 </body>

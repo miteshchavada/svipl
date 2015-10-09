@@ -18,15 +18,24 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/* security */
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Security\Core\SecurityContext;
+
 class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $request = $this->container->get('request');
+        /* @var $request \Symfony\Component\HttpFoundation\Request */
+        $session = $request->getSession();
+        /* @var $session \Symfony\Component\HttpFoundation\Session\Session */
+        $lastUsername = (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME);
         $images = $this->get('doctrine')->getRepository('AcmeImageBundle:Image')->findAll();
         $info = $this->get('doctrine')->getRepository('AcmeInfoBundle:Info')->findAll();
 	$front = $this->get('doctrine')->getRepository('AcmeInfoBundle:Front')->findAll();
 	$testimonials = $this->get('doctrine')->getRepository('AcmeInfoBundle:Testimonials')->findAll();
-        return $this->render('AcmeHomeBundle:Default:index.html.twig',array('images'=>$images,'info'=>$info,'front'=>$front,'testimonials'=>$testimonials));
+        return $this->render('AcmeHomeBundle:Default:index.html.twig',array('images'=>$images,'info'=>$info,'front'=>$front,'testimonials'=>$testimonials,'last_username'=>$lastUsername));
     }
     public function newsAction(Request $request)
     {
@@ -181,5 +190,44 @@ class DefaultController extends Controller
         $this->get('mailer')->send($message);
 	$this->get('session')->getFlashBag()->add('notice','Thanx For ContactUs');
 	return $this->redirect($this->generateUrl('contact'));
+    }
+    
+    public function agentloginAction(Request $request)
+    {
+        $request = $this->container->get('request');
+        /* @var $request \Symfony\Component\HttpFoundation\Request */
+        $session = $request->getSession();
+        /* @var $session \Symfony\Component\HttpFoundation\Session\Session */
+
+        // get the error if any (works with forward and redirect -- see below)
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        } elseif (null !== $session && $session->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+        } else {
+            $error = '';
+        }
+
+        if ($error) {
+            // TODO: this is a potential security risk (see http://trac.symfony-project.org/ticket/9523)
+            $error = $error->getMessage();
+        }
+        // last username entered by the user
+        $lastUsername = (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME);
+
+        $csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
+        return $this->render('AcmeHomeBundle:Default:agentlogin.html.twig',array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+            'csrf_token' => $csrfToken,
+        ));
+    }
+    
+    public function agentlogoutAction(Request $request)
+    {
+        $this->get('security.context')->setToken(null);
+        $this->get('request')->getSession()->invalidate();
+        return $this->redirect($this->generateUrl('acme_home'));
     }
 }

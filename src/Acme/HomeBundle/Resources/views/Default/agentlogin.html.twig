@@ -1,0 +1,49 @@
+{% extends '::common.html.twig' %}
+{% block body %}
+    <div class="body3">
+        <div class="main zerogrid">
+            <!-- content -->
+            <article id="content">
+                <div class="wrapper row">
+                    <section class="col-3-4">
+                        <div class="wrap-col">
+                            <h2 class="under">Login Form</h2>
+                            {% for flashMessage in app.session.flashbag.get('notice') %}
+                                <div class="flash notice">
+                                    {{ flashMessage }}
+                                </div>
+                            {% endfor %}
+                            <form action="{{ path("fos_user_security_check") }}" method="post">
+                            {% if error %}
+                                <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+                            {% endif %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                <fieldset>
+                                        <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control"/>
+                                    
+                                        <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                                        <input type="password" id="password" name="_password" required="required" class="form-control"/>
+                                        
+                                        <label>
+                                            <input name="remember" type="checkbox" value="on" id="remember_me">Remember Me
+                                        </label>
+                                    <input type="submit" class="btn btn-lg btn-success btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />                                </fieldset>
+                                    <input type="hidden" name="_target_path" value="/home" />
+                            </form>
+                        </div>
+                    </section>
+                </div>
+
+            </article>
+        </div>
+    </div>
+    {{ include('followUs.html.twig') }}
+    {{ include('footer.html.twig') }}
+    <script type="text/javascript"> Cufon.now();</script>
+    <script>
+        $(document).ready(function () {
+            tabs.init();
+        })
+    </script>
+{% endblock%}
