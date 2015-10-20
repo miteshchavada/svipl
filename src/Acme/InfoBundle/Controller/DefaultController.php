@@ -8,11 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\Form;
 use Acme\InfoBundle\Form\Type\InfoType;
+use Acme\InfoBundle\Form\Type\LogoType;
 use Acme\InfoBundle\Entity\Info;
 use Acme\InfoBundle\Entity\Contactus;
 use Acme\InfoBundle\Entity\Front;
 use Acme\InfoBundle\Entity\Testimonials;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 
 class DefaultController extends Controller
@@ -216,5 +219,141 @@ class DefaultController extends Controller
             }
         }    
         return $this->render('AcmeInfoBundle:Default:testiedit.html.twig', array('form' => $form->createView(),'id'=>$id));
+    }
+    
+    public function logoAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $logo = $em->getRepository('AcmeInfoBundle:Logo')->findAll();
+        
+//        $qb = $em->createQueryBuilder();
+//        $qb->select('count(account.id)');
+//        $qb->from('AcmeInfoBundle:Logo','account');
+//
+//        $count = $qb->getQuery()->getSingleScalarResult();
+//        echo $count;exit;
+        
+        return $this->render('AcmeInfoBundle:Default:logo.html.twig',array('logo'=>$logo));
+    }
+    
+    public function logoaddAction(Request $request)
+    {
+        $image = new \Acme\InfoBundle\Entity\Logo();
+        $image->setLogo('');
+        $form = $this->createFormBuilder($image)
+                ->add('logo','file')
+                ->add('status','checkbox')
+                ->getForm();
+        $form->handleRequest($request);
+        $validator = $this->get('validator');
+	$errors = $validator->validate($image);
+        if (count($errors) > 0) {
+            return $this->render('AcmeInfoBundle:Default:logoadd.html.twig', array('form' => $form->createView()));
+        }
+        else
+        {
+            if($request->isMethod('post')=='add')
+            {
+               $dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/logo';
+               $a = $request->request->get('form');
+               $og_image = rand().'_'.$form['logo']->getData()->getClientOriginalName();
+               $image = new \Acme\InfoBundle\Entity\Logo();
+               $image->setLogo($og_image);
+               $image->setStatus($a['status']);
+               $em = $this->getDoctrine()->getManager();
+               $em->persist($image);
+               $em->flush();
+               $form->get('logo')->getData()->move($dir,$og_image);
+               return $this->redirect($this->generateUrl('acme_info_logo'));
+               }
+        }
+        return $this->render('AcmeInfoBundle:Default:logoadd.html.twig', array('form' => $form->createView()));
+    }
+    
+    public function logostatusAction(Request $request)
+    {       
+            $id = $request->get('id');
+            $em = $this->getDoctrine()->getManager();
+            $logoStatus = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
+            $stat = $logoStatus->getStatus();
+            if($stat == '1')
+            {
+                    $em = $this->getDoctrine()->getManager();
+                    $logo = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
+                    $logo->setStatus('0');
+                    $em->flush();
+            }
+            else
+            {
+                    $em = $this->getDoctrine()->getManager();
+                    $logo = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
+                    $logo->setStatus('1');
+                    $em->flush();
+            }
+            //echo "true";
+            $response = array("code" => 100, "success" => true, "status" => $logoStatus->getStatus(), "id" => $logoStatus->getId());
+            //you can return result as JSON
+            return new Response(json_encode($response)); 
+    }
+    
+    public function logoeditAction(Request $request)
+    {
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $imageo = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
+        $image = new \Acme\InfoBundle\Entity\Logo();
+        $image->setLogo('');
+        $image->setStatus('');
+        $form = $this->createFormBuilder($image)
+                ->add('logo','file')
+                ->add('status','checkbox',array('mapped'=>false,'required'=>false,'error_bubbling'=>true,'data' => $imageo->getStatus()==1 ? TRUE : FALSE))
+                ->getForm();
+        $form->handleRequest($request);
+        $validator = $this->get('validator');
+	$errors = $validator->validate($image);
+        if (count($errors) > 1) {
+            return $this->render('AcmeInfoBundle:Default:logoedit.html.twig', array('form' => $form->createView(),'id'=>$id,'logo'=>$imageo->getLogo()));
+        }
+        else
+        {
+            if($request->isMethod('POST')=='POST')
+            {
+               if($_FILES['form']['name']['logo'] != NULL)
+                {
+                    $a = $request->request->get('form');
+                    
+                    $dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/logo/';
+                    $em = $this->getDoctrine()->getManager();
+                    $image = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
+                    $old_image = $image->getLogo();
+                    unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/logo/'.$old_image);
+                    $new_image = rand().'_'.$form['logo']->getData()->getClientOriginalName();    
+                    $image = $this->getDoctrine()->getRepository('AcmeInfoBundle:Logo')->find($request->get('id'));
+                    $image->setLogo($new_image);
+                    if($a['status']==1){
+                        $image->setStatus($a['status']);
+                    }else{
+                        $image->setStatus(0);
+                    }
+                    $em->flush();
+                    $form->get('logo')->getData()->move($dir,$new_image);
+                    return $this->redirect($this->generateUrl('acme_info_logo'));
+                }else{
+                    return $this->redirect($this->generateUrl('acme_info_logo'));
+                }
+            }
+        return $this->render('AcmeInfoBundle:Default:logoedit.html.twig', array('form' => $form->createView(),'id'=>$id,'logo'=>$imageo->getLogo()));     
+        }
+    }
+    
+    public function logodeleteAction(Request $request)
+    {
+        $id = $request->get('id');
+	$em = $this->getDoctrine()->getManager();
+        $image = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
+        $em->remove($image);
+        $em->flush();
+        unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/logo/'.$image->getLogo());
+        return $this->redirect($this->generateUrl('acme_info_logo'));
     }
 }

@@ -1,0 +1,23 @@
+Acme\CategoryBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: Acme\CategoryBundle\Entity\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        status:
+            type: integer
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+    lifecycleCallbacks: {  }

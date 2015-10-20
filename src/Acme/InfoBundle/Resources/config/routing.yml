@@ -70,6 +70,26 @@ acme_info_add:
     pattern:  /add
     defaults: { _controller: AcmeInfoBundle:Default:add }
 
+acme_info_logo:
+    pattern:  /logo
+    defaults: { _controller: AcmeInfoBundle:Default:logo }    
+
+acme_logoadd:
+    pattern:  /logoadd
+    defaults: { _controller: AcmeInfoBundle:Default:logoadd }    
+
+logo_status:
+    pattern:  /logostatus
+    defaults: { _controller: AcmeInfoBundle:Default:logostatus }
+    
+acme_logoedit:
+    pattern:  /logoedit
+    defaults: { _controller: AcmeInfoBundle:Default:logoedit }
+
+acme_logodelete:
+    pattern:  /logodelete
+    defaults: { _controller: AcmeInfoBundle:Default:logodelete }
+    
 acme_info:
     path:     /
     defaults: { _controller: AcmeInfoBundle:Default:index }

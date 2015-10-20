@@ -5,33 +5,22 @@
                 <section class="col-1-4">
                     <div class="wrap-col">
                         <h4>Why Us?</h4>
-                        <ul class="list1">
-                            <li><a href="#">Lorem ipsum dolor sit</a></li>
-                            <li><a href="#">Dmet, consectetur</a></li>
-                            <li><a href="#">Adipisicing elit eiusmod </a></li>
-                            <li><a href="#">Tempor incididunt ut</a></li>
-                        </ul>
+                        {{ whyus|raw }}
                     </div>
                 </section>
                 <section class="col-1-4">
                     <div class="wrap-col">
                         <h4>Address</h4>
-                        <ul class="address">
-                            <li><span>Country:</span>USA</li>
-                            <li><span>City:</span>San Diego</li>
-                            <li><span>Phone:</span>8 800 154-45-67</li>
-                            <li><span>Email:</span><a href="mailto:">progress@mail.com</a></li>
-                        </ul>
+                        {{ address|raw }}
                     </div>
                 </section>
                 <section class="col-1-4">
                     <div class="wrap-col">
                         <h4>Follow Us</h4>
                         <ul id="icons">
-                            <li><a href="https://www.facebook.com/siddhivinayak.svipl"><img src="{{ asset('/bundles/acmehome/images/icon1.jpg') }}" alt="">Facebook</a></li>
-                            <li><a href="https://twitter.com/sviplfive"><img src="{{ asset('/bundles/acmehome/images/icon2.jpg') }}" alt="">Twitter</a></li>
-                            <li><a href="https://www.linkedin.com/company/siddhi-vinayak-infocom-pvt.-ltd.-rajkot-gujarat"><img src="{{ asset('/bundles/acmehome/images/icon3.jpg') }}" alt="">LinkedIn</a></li>
-                            <li><a href="#"><img src="{{ asset('/bundles/acmehome/images/icon4.jpg') }}" alt="">Delicious</a></li>
+                            {% for follow in followus %}
+                                <li><a href="{{ follow.link }}"><img src="{{asset(['uploads/follow/',follow.id,'/',follow.logo]|join)}}" />{{ follow.title }}</a></li>
+                            {% endfor %}    
                         </ul>
                     </div>
                 </section>

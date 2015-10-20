@@ -11,6 +11,9 @@ Acme\StoreBundle\Entity\Product:
         name:
             type: string
             length: '100'
+        category:
+            type: string
+            lengh:  '11'
         price:
             type: decimal
         status:

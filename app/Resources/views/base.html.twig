@@ -81,7 +81,9 @@
                     <ul class="nav" id="side-menu">
                         {% if is_granted('ROLE_ADMIN') %}
                             <li><a href="{{ path('acme_user') }}"><i class="fa fa-user fa-fw"></i>User</a></li>
+                            <li><a href="{{ path('acme_info_logo') }}"><i class="fa fa-dashboard fa-fw"></i>Logo</a></li>
                         {% endif %}    
+                        <li><a href="{{ path('acme_category') }}"><i class="fa fa-dashboard fa-fw"></i>Category</a></li>
                         <li><a href="{{ path('acme_store') }}"><i class="fa fa-dashboard fa-fw"></i>Store</a></li>
                         <li><a href="{{ path('acme_image') }}"><i class="fa fa-table fa-fw"></i>Slider Image</a></li>
                         <li><a href="{{ path('acme_info') }}"><i class="fa fa-sitemap fa-fw"></i>Info</a></li>
@@ -90,6 +92,7 @@
                         <li><a href="{{ path('acme_info_newslist') }}"><i class="fa fa-files-o fa-fw"></i>News</a></li>
                         <li><a href="{{ path('acme_info_serviceslist') }}"><i class="fa fa-envelope fa-fw"></i>Services</a></li>
                         <li><a href="{{ path('acme_info_contactus') }}"><i class="fa fa-bell fa-fw"></i>ContactUs</a></li>
+                        <li><a href="{{ path('acme_footer') }}"><i class="fa fa-bell fa-fw"></i>Footer</a></li>
                     </ul>
                 </div>
             </div>
@@ -139,13 +142,6 @@
                         }else{
                             $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
                         }
-                        {#if(result.status == true){
-                            $("a.btn-status").removeClass("btn-danger");
-                            $("a.btn-status").addClass("btn-success");
-                        }else{
-                            $("a.btn-status").removeClass("btn-success");
-                            $("a.btn-status").addClass("btn-danger");
-                        }#}
                     },
                     error: function(e){
                         alert(e);
@@ -153,6 +149,81 @@
                 });
            }); 
         });
+        $(document).ready(function(){
+           $(".btn-category-status").click(function(){
+                id = $(this).attr('id');
+                $.ajax({
+                    url: "{{ path('category_status') }}",
+                    type: "POST",
+                    data: {id : id},
+                    dataType: "json",
+                    beforeSend: function(){
+                        
+                    },
+                    success: function(result){
+                        //oTable.fnDraw();
+                        if(result.status == true){
+                            $("a#"+result.id).removeClass("btn-danger").addClass("btn-success").html("Enable");
+                        }else{
+                            $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
+                        }
+                    },
+                    error: function(e){
+                        alert(e);
+                    },
+                });
+           }); 
+        });
+        
+        $(document).ready(function(){
+           $(".btn-logo-status").click(function(){
+                id = $(this).attr('id');
+                $.ajax({
+                    url: "{{ path('logo_status') }}",
+                    type: "POST",
+                    data: {id : id},
+                    dataType: "json",
+                    beforeSend: function(){
+                        
+                    },
+                    success: function(result){
+                        //oTable.fnDraw();
+                        if(result.status == true){
+                            $("a#"+result.id).removeClass("btn-danger").addClass("btn-success").html("Enable");
+                        }else{
+                            $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
+                        }
+                    },
+                    error: function(e){
+                        alert(e);
+                    },
+                });
+           }); 
+           $(".btn-follow-status").click(function(){
+                id = $(this).attr('id');
+                $.ajax({
+                    url: "{{ path('follow_status') }}",
+                    type: "POST",
+                    data: {id : id},
+                    dataType: "json",
+                    beforeSend: function(){
+                        
+                    },
+                    success: function(result){
+                        //oTable.fnDraw();
+                        if(result.status == true){
+                            $("a#"+result.id).removeClass("btn-danger").addClass("btn-success").html("Enable");
+                        }else{
+                            $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
+                        }
+                    },
+                    error: function(e){
+                        alert(e);
+                    },
+                });
+           }); 
+        });
+        
     </script>
 </body>
 

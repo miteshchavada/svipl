@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 02, 2015 at 05:58 PM
+-- Generation Time: Oct 13, 2015 at 01:30 PM
 -- Server version: 5.1.60
 -- PHP Version: 5.3.8
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `symfony2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Category`
+--
+
+CREATE TABLE IF NOT EXISTS `Category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -83,15 +98,16 @@ CREATE TABLE IF NOT EXISTS `fos_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `fos_user`
 --
 
 INSERT INTO `fos_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`) VALUES
-(1, 'super', 'super', 'employee.svipl@gmail.com', 'employee.svipl@gmail.com', 1, '6jn0hv7120gs048k4scowcsk0s4csgw', '60hQ8pYr1jnhE1lANBG4ux5jqJvOEyMwIs2jQLD0tGv3Iak4bDtM0Ifv2co61bJJQ4FeBHrTc8sGXpMH7HxxQw==', '2015-09-29 10:49:17', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL),
-(3, 'admin', 'admin', 'mitesh.chavada36@gmail.com', 'mitesh.chavada36@gmail.com', 1, '4pyimvmgk7i8gcsow8os0owk0gwws4g', 'nrk1qgac5d7pznU6Yed8J39cqcHDa2oRl4k787bmxFTgDK7w7uWYX63LgHsdV6Ew4vmmfa/bPzzkg2ds6g0p4g==', '2015-10-01 18:40:00', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL);
+(1, 'super', 'super', 'employee.svipl@gmail.com', 'employee.svipl@gmail.com', 1, '6jn0hv7120gs048k4scowcsk0s4csgw', '60hQ8pYr1jnhE1lANBG4ux5jqJvOEyMwIs2jQLD0tGv3Iak4bDtM0Ifv2co61bJJQ4FeBHrTc8sGXpMH7HxxQw==', '2015-10-12 11:22:41', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL),
+(3, 'admin', 'admin', 'mitesh.chavada36@gmail.com', 'mitesh.chavada36@gmail.com', 1, '4pyimvmgk7i8gcsow8os0owk0gwws4g', 'nrk1qgac5d7pznU6Yed8J39cqcHDa2oRl4k787bmxFTgDK7w7uWYX63LgHsdV6Ew4vmmfa/bPzzkg2ds6g0p4g==', '2015-10-13 13:20:26', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL),
+(5, 'dhaval', 'dhaval', 'dhaval.svipl@gmail.com', 'dhaval.svipl@gmail.com', 1, 'jbtcqc5cjp4wco84o044csgkskko4g8', 'VbBbEPOlKEuPSgEUVxppFj3Yny2BV+65hLReoWB3S+BUWiTaa5FEJiSYiMqoQT6oV94LE2e8cL1Uh/zjMEDBGA==', '2015-10-13 13:20:00', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -126,17 +142,18 @@ CREATE TABLE IF NOT EXISTS `Image` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `Image`
 --
 
 INSERT INTO `Image` (`id`, `image`, `createdAt`, `updatedAt`) VALUES
-(7, '1090976769_652350732_img2.jpg', '2015-09-22 13:19:55', '2015-09-22 13:19:55'),
+(7, '333394327_652350732_img2.jpg', '2015-09-22 13:19:55', '2015-09-22 13:19:55'),
 (8, '1644763898_1353790450_img4.jpg', '2015-09-22 13:20:04', '2015-09-22 13:20:04'),
 (9, '698681798_344752430_img3.jpg', '2015-09-25 17:47:21', '2015-09-25 17:47:21'),
-(10, '357707574_576304949_img1.jpg', '2015-09-25 18:15:35', '2015-09-25 18:15:35');
+(10, '357707574_576304949_img1.jpg', '2015-09-25 18:15:35', '2015-09-25 18:15:35'),
+(11, '207803495_344752430_img3.jpg', '2015-10-03 11:24:39', '2015-10-03 11:24:39');
 
 -- --------------------------------------------------------
 
@@ -184,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `News` (
 --
 
 INSERT INTO `News` (`id`, `title`, `image`, `description`, `createdAt`, `updatedAt`) VALUES
-(4, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit mitesh', 'page4_img3.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2014-09-27 10:44:12', '2014-09-27 10:44:12'),
+(4, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit', 'page4_img3.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2014-09-27 10:44:12', '2014-09-27 10:44:12'),
 (5, 'Duis aute irure dolor in reprehenderit', 'page2_img2.jpg', 'Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.', '2014-09-27 10:45:30', '2014-09-27 10:45:30'),
 (6, 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem', 'page2_img3.jpg', 'Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis.', '2014-09-27 11:11:36', '2014-09-27 11:11:36'),
 (7, 'Duis aute irure dolor in reprehenderit', 'page2_img2.jpg', '\r\n\r\nSed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.', '2014-09-27 11:14:57', '2014-09-27 11:14:57'),
@@ -202,10 +219,10 @@ INSERT INTO `News` (`id`, `title`, `image`, `description`, `createdAt`, `updated
 (19, 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem', 'page2_img3.jpg', 'Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis.', '2014-09-27 11:20:15', '2014-09-27 11:20:15'),
 (20, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit', 'page2_img1.jpg', '\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2014-09-27 11:20:38', '2014-09-27 11:20:38'),
 (21, 'Duis aute irure dolor in reprehenderit', 'page2_img2.jpg', 'Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.', '2014-09-27 11:21:03', '2014-09-27 11:21:03'),
-(22, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit', 'page2_img1.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:45:17', '2015-09-28 11:45:17'),
-(23, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit mitesh', 'page2_img1.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:45:31', '2015-09-28 11:45:31'),
-(24, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit mitesh', 'page2_img1.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:46:43', '2015-09-28 11:46:43'),
-(25, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit mitesh', 'page2_img1.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:48:18', '2015-09-28 11:48:18');
+(22, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit', 'page4_img4.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:45:17', '2015-09-28 11:45:17'),
+(23, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit mitesh', 'page4_img2.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:45:31', '2015-09-28 11:45:31'),
+(24, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit mitesh', 'page4_img3.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:46:43', '2015-09-28 11:46:43'),
+(25, 'Lorem Ipsum dolor sit amet consectetur adipiscing elit mitesh', 'page4_img1.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.', '2015-09-28 11:48:18', '2015-09-28 11:48:18');
 
 -- --------------------------------------------------------
 
@@ -230,25 +247,13 @@ CREATE TABLE IF NOT EXISTS `Newsletter` (
 CREATE TABLE IF NOT EXISTS `Product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `status` int(11) NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
-
---
--- Dumping data for table `Product`
---
-
-INSERT INTO `Product` (`id`, `name`, `price`, `status`, `description`, `image`) VALUES
-(1, 'test', '50', 1, 'test', 'page4_img1.jpg'),
-(2, 'test', '50', 1, 'test', 'page4_img3.jpg'),
-(3, 'test', '50', 1, 'test', 'page4_img5.jpg'),
-(4, 'test', '50', 1, 'test', 'page4_img2.jpg'),
-(5, 'test', '50', 1, 'test', 'page4_img4.jpg'),
-(6, 'test', '50', 1, 'test', 'page4_img6.jpg'),
-(8, 'test', '150', 1, 'test', 'page4_img3.jpg');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 -- --------------------------------------------------------
 

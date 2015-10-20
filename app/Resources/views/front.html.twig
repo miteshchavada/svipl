@@ -67,7 +67,9 @@
                         
                         <header>
                             <div class="wrapper row">
-                                <h1><a href="{{ path('acme_home') }}" id="logo"><img src="{{ asset('bundles/acmehome/images/logo.png') }}" /></a></h1>
+                                {% if logo is defined %}
+                                <h1><a href="{{ path('acme_home') }}" id="logo"><img src="{{asset(['uploads/logo/',logo]|join)}}" /></a></h1>
+                                {% endif %}
                                 <nav>
                                     <ul id="menu">
                                         {% if app.request.get('_route') == 'acme_home' %}

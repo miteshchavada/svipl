@@ -26,16 +26,42 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        // for address content read start
+        $filePath= $_SERVER['DOCUMENT_ROOT'].'/uploads/cms';
+        $addressFile = 'address.txt';
+        $addFile = $filePath.'/'.$addressFile;
+        $handle = fopen($addFile, "r");
+        $address = fread($handle, filesize($addFile));        
+        // for address content read end
+        
+        // for whyus content read start
+        $filePath= $_SERVER['DOCUMENT_ROOT'].'/uploads/cms';
+        $whyusFile = 'whyus.txt';
+        $whyFile = $filePath.'/'.$whyusFile;
+        $handle = fopen($whyFile, "r");
+        $whyus = fread($handle, filesize($whyFile));
+        // for address content read end
+        
         $request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
         $session = $request->getSession();
         /* @var $session \Symfony\Component\HttpFoundation\Session\Session */
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME);
+        //$logo = $this->get('doctrine')->getRepository('AcmeInfoBundle:Logo')->findAll('status=1');
+        //$homePageLogo = $logo[0]->getLogo();
+        $homePageLogo = '';
+        $query = $this->getDoctrine()->getEntityManager()
+            ->createQuery(
+                'SELECT u.logo FROM AcmeInfoBundle:Logo u WHERE u.status = 1');
+
+        $users = $query->getResult();
+        $homePageLogo = $users[0]['logo'];
+        $followus = $this->get('doctrine')->getRepository('AcmeFooterBundle:Followus')->findBy(array('status'=>'1'));
         $images = $this->get('doctrine')->getRepository('AcmeImageBundle:Image')->findAll();
         $info = $this->get('doctrine')->getRepository('AcmeInfoBundle:Info')->findAll();
 	$front = $this->get('doctrine')->getRepository('AcmeInfoBundle:Front')->findAll();
 	$testimonials = $this->get('doctrine')->getRepository('AcmeInfoBundle:Testimonials')->findAll();
-        return $this->render('AcmeHomeBundle:Default:index.html.twig',array('images'=>$images,'info'=>$info,'front'=>$front,'testimonials'=>$testimonials,'last_username'=>$lastUsername));
+        return $this->render('AcmeHomeBundle:Default:index.html.twig',array('images'=>$images,'info'=>$info,'front'=>$front,'testimonials'=>$testimonials,'last_username'=>$lastUsername,'logo'=>$homePageLogo,'address'=>$address,'whyus'=>$whyus,'followus'=>$followus));
     }
     public function newsAction(Request $request)
     {

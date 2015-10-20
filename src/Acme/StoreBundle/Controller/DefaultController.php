@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\StoreBundle\Entity\Product;
+use Acme\CategoryBundle\Entity\Category;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,12 +69,19 @@ class DefaultController extends Controller
     
     public function addAction(Request $request)
     {
+        $cateArray = array();
+        $category= $this->get('doctrine')->getRepository('AcmeCategoryBundle:Category')->findBy(array('status'=>1));
+        foreach($category as $key => $data):
+            $cateArray[$data->getId()] = $data->getName();
+        endforeach;
         $products = new \Acme\StoreBundle\Entity\Product();
+        $products->setCategory('');
         $products->setName('');
         $products->setPrice('');
         $products->setDescription('');
         $products->setImage('');
         $form = $this->createFormBuilder($products)
+            ->add('category', 'choice', array('choices' => array('placeholder'=>'select category',''=>$cateArray)))
             ->add('name', 'text')
             ->add('price','text')
             ->add('description','textarea')
@@ -89,6 +97,7 @@ class DefaultController extends Controller
             $img = $form['image']->getData()->getClientOriginalName();
             $products = new Product();
             $products->setName($a['name']);
+            $products->setCategory($a['category']);
             $products->setPrice($a['price']);
             $products->setDescription($a['description']);
             $products->setStatus('1');
@@ -106,33 +115,33 @@ class DefaultController extends Controller
     
     public function editAction(Request $request)
     {
+        $category= $this->get('doctrine')->getRepository('AcmeCategoryBundle:Category')->findAll();
+        foreach($category as $key => $data):
+            $cateArray[$data->getId()] = $data->getName();
+        endforeach;
+        $queue = $cateArray;
+        array_unshift($queue, "select category");
+        $cate = $queue;
+        
         $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('AcmeStoreBundle:Product')->find($id);
+        
         $oldimg = $product->getImage();
         $products = new \Acme\StoreBundle\Entity\Product();
+        $products->setCategory('');
         $products->setName('');
         $products->setPrice('');
         $products->setDescription('');
         $products->setImage('');
         $form = $this->createFormBuilder($products)
+            //->add('category', 'choice', array('choices' => array('placeholder'=>'select category',''=>$cateArray)))    
+            ->add('category', 'choice', array('choices' => $cate,'data'=>$product->getCategory()))    
             ->add('name', 'text')
             ->add('price','text')
             ->add('description','textarea')
             ->add('image','file', array('error_bubbling' => TRUE))
             ->getForm();
-//        $products = $em->getRepository('AcmeStoreBundle:Product')->find($id);
-//		    $products->setName($products->getName());
-//		    $products->setPrice($products->getPrice());
-//		    $products->setDescription($products->getDescription());
-//                    $products->setImage($products->getImage());
-//            $form = $this->createFormBuilder($products)
-//		        ->add('name', 'text',array('attr'=>array('class'=>'form-control')))
-//		        ->add('price','text',array('attr'=>array('class'=>'form-control')))
-//		        ->add('description','textarea',array('label'=>'Description','attr'=>array('class'=>'form-control')))
-//                        ->add('image', 'file', array('data_class'=>null,'label' => 'Image','attr' =>  array('class' => 'btn btn-default btn-file')))
-//                        //->add('image','file',array('data_class'=>null,'required'=>false))
-//		        ->getForm();
             $form->handleRequest($request);
             $validator = $this->get('validator');
             $errors = $validator->validate($products);
@@ -160,6 +169,7 @@ class DefaultController extends Controller
                         $products->setImage($oldimg);
                     }
                     $products->setName($a['name']);
+                    $products->setCategory($a['category']);
                     $products->setPrice($a['price']);
                     $products->setDescription($a['description']);
                     $products->setStatus('1');

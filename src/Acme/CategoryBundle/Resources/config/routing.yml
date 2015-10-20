@@ -1,0 +1,19 @@
+acme_category:
+    path:     /category
+    defaults: { _controller: AcmeCategoryBundle:Default:index }
+
+category_add:
+    pattern:  /category/add
+    defaults: { _controller: AcmeCategoryBundle:Default:add }
+
+category_edit:
+    pattern:  /category/edit
+    defaults: { _controller: AcmeCategoryBundle:Default:edit }    
+    
+category_status:
+    pattern:  /category/status
+    defaults: { _controller: AcmeCategoryBundle:Default:status }        
+
+category_delete:
+    pattern:  /category/delete
+    defaults: { _controller: AcmeCategoryBundle:Default:delete }            

@@ -29,7 +29,8 @@ class Product
      */
     private $price;
     private $status;
-    
+    protected $category;
+
     /**
      * @var string
      */
@@ -133,7 +134,28 @@ class Product
     {
         return $this->name;
     }
+    /**
+     * Set category
+     *
+     * @param string $name
+     * @return Product
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
 
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
     /**
      * Set price
      *
