@@ -1,0 +1,81 @@
+<?php
+
+namespace Acme\StoreBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Request;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Acme\StoreBundle\Entity\Product;
+use Symfony\Component\HttpFoundation\Response;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+class DefaultController extends Controller
+{
+    public function indexAction()
+    {
+    	$products = $this->get('doctrine')->getRepository('AcmeStoreBundle:Product')->findAll();
+    	return $this->render('AcmeStoreBundle:Default:index.html.twig',array('products'=>$products));
+    }
+    public function listAction()
+    {
+    	echo "listing";exit;
+    }
+    
+    public function addAction(Request $request)
+    {
+        $products = new Product();
+        $products->setName('');
+        $products->setPrice('');
+        $products->setDescription('');
+        $form = $this->createFormBuilder($products)
+            ->add('name', 'text')
+            ->add('price', 'text')
+            ->add('description','textarea')
+            ->getForm();
+		$form->handleRequest($request);
+		
+	 $validator = $this->get('validator');
+  	  $errors = $validator->validate($products);
+
+		
+		return $this->render('AcmeStoreBundle:Default:add.html.twig', array('form' => $form->createView()));
+    }
+    /*public function addproductAction(Request $request) 
+    {
+    	$a = $request->request->get('form');
+    	if($request->request->get('form'))
+    	{
+   		$products = new Product();
+		$products->setName($a['name']);
+		$products->setPrice($a['price']);
+		$products->setDescription($a['description']);
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($products);
+		$em->flush();
+		return $this->redirect($this->generateUrl('acme_store'));
+    	}
+    }*/
+    
+    public function editAction(Request $request)
+    {
+        $product = $this->getDoctrine()
+        ->getRepository('AcmeStoreBundle:Product')
+        ->find($request->get('id'));
+       $products = new Product();
+       $products->setName('');
+       $products->setPrice('');
+       $products->setDescription('');
+       $form = $this->createFormBuilder($products,array('action'=>'edit?id='.$product->getId(),'method'=>'POST'))
+            ->add('id','hidden',array('data'=>$product->getId()))
+            ->add('name', 'text',array('data' => $product->getName()))
+            ->add('price', 'text',array('data' => $product->getPrice()))
+            ->add('description','textarea',array('data'=>$product->getDescription()))
+            ->getForm();
+      return $this->render('AcmeStoreBundle:Default:edit.html.twig', array('form' => $form->createView(),'product'=>$product));
+    }
+    
+       //echo $request->get('id');exit;
+       
+}

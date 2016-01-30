@@ -1,0 +1,175 @@
+{% extends '::front.html.twig' %}
+{% block body %}
+    {% for fronts in front %}
+        {{ fronts.description|raw }}
+    {% endfor %}
+
+    <section id="recent-works">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>Recent Works</h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+            </div>
+            {% for recentWork in recentWorks %}
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="{{asset(['uploads/recent_works/',recentWork.id,'/',recentWork.image]|join)}}" alt="">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">{{ recentWork.title }}</a> </h3>
+                                <p>{{ recentWork.description }}</p>
+                                <a class="preview" href="{{asset(['uploads/recent_works/',recentWork.id,'/',recentWork.image]|join)}}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}    
+        </div><!--/.container-->
+    </section><!--/#recent-works-->
+
+    <section id="middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 wow fadeInDown">
+                    <div class="skill">
+                        <h2>Our Skills</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        
+                        {% for skills in info %}
+                            <div class="progress-wrap">
+                                <h3>{{ skills.title }}</h3>
+                                <div class="progress">
+                                    <div class="progress-bar color{{ loop.index }}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {{ skills.percentage }}%">
+                                        <span class="bar-width">{{ skills.percentage }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}    
+                    </div>
+
+                </div><!--/.col-sm-6-->
+
+                <div class="col-sm-6 wow fadeInDown">
+                    <div class="accordion">
+                        <h2>Why People like us?</h2>
+                        <div class="panel-group" id="accordion1">
+                            
+                            {% for people in peoples %}
+                                <div class="panel panel-default">
+                                    <div class="panel-heading active">
+                                        <h3 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse_{{ people.id }}">
+                                                {{ people.title }}
+                                                <i class="fa fa-angle-right pull-right"></i>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    {% if loop.index == 1 %}            
+                                        <div id="collapse_{{ people.id }}" class="panel-collapse collapse in">
+                                    {% else %}     
+                                        <div id="collapse_{{ people.id }}" class="panel-collapse collapse">
+                                    {% endif %}    
+                                        <div class="panel-body">
+                                            <div class="media accordion-inner">
+                                                <div class="pull-left">
+                                                    <img class="img-responsive" src="{{asset(['uploads/peoples/',people.id,'/',people.image]|join)}}">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>{{ people.title }}</h4>
+                                                    <p>{{ people.description }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}    
+                        </div><!--/#accordion1-->
+                    </div>
+                </div>
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#middle-->
+
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 wow fadeInDown">
+                    <div class="tab-wrap"> 
+                        <div class="media">
+                            <div class="parrent pull-left">
+                                <ul class="nav nav-tabs nav-stacked">
+                                {% for work in works %}
+                                    {% if loop.index == 1 %}
+                                    <li class="active"><a href="#tab{{ loop.index }}" data-toggle="tab" class="analistic-01">{{ work.title }}</a></li>
+                                    {% else %}
+                                    <li class=""><a href="#tab{{ loop.index }}" data-toggle="tab" class="analistic-01">{{ work.title }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </div>
+
+                            <div class="parrent media-body">
+                                <div class="tab-content">
+                                    {% for work in works %}
+                                    {% if loop.index == 1 %}    
+                                    <div class="tab-pane fade active in" id="tab{{ loop.index }}">
+                                    {% else %}    
+                                    <div class="tab-pane fade" id="tab{{ loop.index }}">
+                                    {% endif %}    
+                                        <div class="media">
+                                            <div class="pull-left">
+                                                <img class="img-responsive" src="{{asset(['uploads/works/',work.id,'/',work.image]|join)}}">
+                                            </div>
+                                            <div class="media-body">
+                                                <h2>{{ work.title }}</h2>
+                                                <p>{{ work.description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}    
+                                </div> <!--/.tab-content-->  
+                            </div> <!--/.media-body--> 
+                        </div> <!--/.media-->     
+                    </div><!--/.tab-wrap-->               
+                </div><!--/.col-sm-6-->
+
+                <div class="col-xs-12 col-sm-4 wow fadeInDown">
+                    <div class="testimonial">
+                        <h2>Testimonials</h2>
+                        {% for testimonial in testimonials %}
+                            <div class="media testimonial-inner">
+                                <div class="pull-left">
+                                    <img class="img-responsive img-circle" src="{{asset(['uploads/testimonials/',testimonial.id,'/',testimonial.image]|join)}}">
+                                </div>
+                                <div class="media-body">
+                                    <p>{{ testimonial.description }}</p>
+                                    <span><strong>-{{ testimonial.name }} /</strong> {{ testimonial.post }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}    
+                    </div>
+                </div>
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#content-->
+    {{ contents|raw }}
+    <section id="conatcat-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="pull-left">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="media-body">
+                            <h2>Have a question or need a custom quote?</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation +0123 456 70 80</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.container-->    
+    </section><!--/#conatcat-info-->
+{% endblock %}

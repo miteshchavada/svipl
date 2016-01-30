@@ -1,0 +1,15 @@
+delete_team:
+    path:     /team/delete/{id}
+    defaults: { _controller: AcmeTeamBundle:Default:delete }
+
+edit_team:
+    path:     /team/edit/{id}
+    defaults: { _controller: AcmeTeamBundle:Default:edit }
+    
+add_team:
+    path:     /team/add
+    defaults: { _controller: AcmeTeamBundle:Default:add }
+
+acme_team:
+    path:     /team
+    defaults: { _controller: AcmeTeamBundle:Default:index }

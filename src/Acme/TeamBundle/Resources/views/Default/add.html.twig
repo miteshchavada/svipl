@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    {% block content %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add Team</h1>
+            </div>
+        </div>
+        <div class="row">  
+            <center>
+                <form action="{{ path('add_team') }}" method="post" {{ form_enctype(form) }} class="form-group">
+                    {% if not form.vars.valid %}
+                        <div class="alert alert-danger"> 
+                            {{ form_errors(form.name)}}
+                            {{ form_errors(form.designation) }}
+                            {{ form_errors(form.skills) }}
+                            {{ form_errors(form.image) }}
+                            {{ form_errors(form.facebook) }}
+                            {{ form_errors(form.twitter) }}
+                            {{ form_errors(form.gmail) }}
+                            {{ form_errors(form.description) }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group col-lg-12">
+                        {{ form_label(form.name, 'Name: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.name, { 'attr': {'class': 'form-control','placeholder': 'Name'} }) }}  
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        {{ form_label(form.designation, 'Designation: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.designation, { 'attr': {'class': 'form-control','placeholder': 'Designation'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-16">
+                        {{ form_label(form.skills, 'Skills: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-lg-5">
+                            {{ form_widget(form.skills, { 'attr': {'class': '','placeholder': 'Skills'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        {{ form_label(form.facebook, 'Facebook: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.facebook, { 'attr': {'class': 'form-control','placeholder': 'Facebook'} }) }}
+                        </div>
+                    </div>    
+                    <div class="form-group col-lg-12">
+                        {{ form_label(form.twitter, 'Twitter: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.twitter, { 'attr': {'class': 'form-control','placeholder': 'Twitter'} }) }}
+                        </div>
+                    </div>    
+                    <div class="form-group col-lg-12">
+                        {{ form_label(form.gmail, 'Gmail: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.gmail, { 'attr': {'class': 'form-control','placeholder': 'Gmail'} }) }}
+                        </div>
+                    </div>   
+                    <div class="form-group col-lg-12">
+                        {{ form_label(form.image, 'Image: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-sm-2">
+                            {{ form_widget(form.image, { 'attr': {'class': 'btn btn-default btn-file'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        {{ form_label(form.description, 'Description: ', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.description, { 'attr': {'class': 'form-control','placeholder': 'Description'} }) }}
+                        </div>
+                    </div>       
+                    <div class="form-group col-lg-6">
+                        <input type="submit" formnovalidate value="Insert" name="insert" class="btn btn-primary"/>
+                        <input type="reset" name="Reset" value="Reset" class="btn btn-danger" onclick="javascript:window.location.href = '{{ path('acme_team') }}'"/>
+                    </div>
+                </form>
+            </center>			
+        </div>
+    {% endblock %}
+{% endblock %}

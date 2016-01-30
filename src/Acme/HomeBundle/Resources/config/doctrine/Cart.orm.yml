@@ -1,0 +1,48 @@
+Acme\HomeBundle\Entity\Cart:
+    type: entity
+    table: null
+    repositoryClass: Acme\HomeBundle\Entity\CartRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        productId:
+            type: integer
+            column: product_id
+        categoryId:
+            type: integer
+            column: category_id
+        productPrice:
+            type: string
+            length: 255
+            column: product_price
+        quantity:
+            type: string
+            length: 255
+        custName:
+            type: string
+            length: 255
+            column: cust_name
+        custAddress:
+            type: string
+            length: 255
+            column: cust_address
+        custPhone:
+            type: string
+            length: 11
+            column: cust_phone
+        custEmail:
+            type: string
+            length: 255
+            column: cust_email
+        custDescription:
+            type: text
+            column: cust_description
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+    lifecycleCallbacks: {  }

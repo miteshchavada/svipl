@@ -1,0 +1,31 @@
+acme_footer:
+    path:     /
+    defaults: { _controller: AcmeFooterBundle:Default:index }
+
+acme_footer_followus:
+    path:    /followus
+    defaults: { _controller: AcmeFooterBundle:Default:followus }
+
+acme_footer_followusadd:
+    path:    /followusadd
+    defaults: { _controller: AcmeFooterBundle:Default:followusadd }
+
+follow_status:
+    path:    /followstatus
+    defaults: { _controller: AcmeFooterBundle:Default:followstatus }
+    
+acme_footer_address:
+    path:    /address
+    defaults: { _controller: AcmeFooterBundle:Default:address }    
+
+acme_footer_whyus:
+    path:    /whyus
+    defaults: { _controller: AcmeFooterBundle:Default:whyus }        
+    
+acme_followedit:
+    path:    /followedit/{id}
+    defaults: { _controller: AcmeFooterBundle:Default:followedit }
+    
+acme_followdelete:
+    path:    /followdelete/{id}
+    defaults: { _controller: AcmeFooterBundle:Default:followdelete }    

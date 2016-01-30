@@ -1,0 +1,39 @@
+Acme\TeamBundle\Entity\Team:
+    type: entity
+    table: null
+    repositoryClass: Acme\TeamBundle\Entity\TeamRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        designation:
+            type: string
+            length: 255
+        image:
+            type: string
+            length: 255    
+        skills:
+            type: string
+            length: 255
+        facebook:
+            type: string
+            length: 255
+        twitter:
+            type: string
+            length: 255
+        gmail:
+            type: string
+            length: 255
+        description:
+            type: text
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+    lifecycleCallbacks: {  }

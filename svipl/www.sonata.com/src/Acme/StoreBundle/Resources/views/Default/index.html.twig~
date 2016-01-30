@@ -1,0 +1,18 @@
+{% extends "EnsJobeetBundle::layout.html.twig" %}
+{% block body %}
+ {% block content %}
+<div style ="margin-left:850px;"><a href="add">Add Product</a></div>
+<table border="1" align="center">
+<caption> Product List</caption>
+<tr>
+
+{% for product in products %}
+    <td>{{ loop.index }} - {{ product.name }}</td>
+    <td><a href="edit?id={{ product.id }}">edit</a></td>
+    <td><a href="delete?id={{ product.id }}" onclick="return confirm('are sure delete?')">delete</a></td>
+    <tr>
+{% endfor %}
+{% endblock %}
+</tr>
+</table>
+{% endblock %}

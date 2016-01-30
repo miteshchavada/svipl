@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>SVIPL</title>    
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{% block title %}Test Application{% endblock %}</title>
+	{% block stylesheets %}
+	<link href="{{ asset('/bundles/acmehome/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('/bundles/acmehome/css/font-awesome.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('/bundles/acmehome/css/animate.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('/bundles/acmehome/css/prettyPhoto.css') }}" rel="stylesheet">
+	<link href="{{ asset('/bundles/acmehome/css/main.css') }}" rel="stylesheet">
+	<link href="{{ asset('/bundles/acmehome/css/responsive.css') }}" rel="stylesheet">
+        {% endblock %}
+	{% block javascripts %}
+    	<script src="{{ asset('/bundles/acmehome/js/jquery.js') }}"></script>
+        <script src="{{ asset('/bundles/acmehome/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('/bundles/acmehome/js/common.js') }}"></script>
+        <script src="{{ asset('/bundles/acmehome/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/bundles/acmehome/js/jquery.prettyPhoto.js') }}"></script>
+        <script src="{{ asset('/bundles/acmehome/js/jquery.isotope.min.js') }}"></script>
+        <script src="{{ asset('/bundles/acmehome/js/main.js') }}"></script>
+        <script src="{{ asset('/bundles/acmehome/js/wow.min.js') }}"></script>
+	{% endblock %}
+</head>

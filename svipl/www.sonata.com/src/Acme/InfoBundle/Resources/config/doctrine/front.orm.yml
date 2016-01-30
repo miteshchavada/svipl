@@ -1,0 +1,18 @@
+Acme\InfoBundle\Entity\front:
+    type: entity
+    table: null
+    repositoryClass: Acme\InfoBundle\Entity\frontRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        description:
+            type: text
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+    lifecycleCallbacks: {  }

@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    {% block content %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Works</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Work List
+                        <div style="float:right; margin-top:-15px;" class="panel-heading"><a href="work/add"><button type="button" class="btn btn-primary btn-sm">Add Work</button></a></div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Serial No</th>
+                                        <th>Title</th>
+                                        <th>Image</th>
+                                        <th>Description</th>
+                                        <th>Operations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for work in works %}
+                                        <tr class="gradeA">
+                                            <td>{{ loop.index }}</td>
+                                            <td>{{ work.title }}</td>
+                                            <td><img src="{{asset(['uploads/works/',work.id,'/',work.image]|join)}}" style="width:80px; height: 50px;" /></td>
+                                            <td width="350px;">{{ work.description }}</td>
+                                            <td>
+                                                <a href="{{ path('acme_work_edit',{ 'id':work.id } ) }}" class="btn btn-primary">edit</a>
+                                                <a href="{{ path('acme_work_delete',{ 'id':work.id } ) }}" class="btn btn-danger" onclick="return confirm('are sure delete?')">delete</a></li>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <!-- div>{{ paginator|raw }}</div--> 
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    {% endblock %}

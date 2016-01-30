@@ -1,0 +1,18 @@
+<section id="partner">
+<div class="container">
+<div class="center wow fadeInDown">
+<h2>Our Partners</h2>
+<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br /> et dolore magna aliqua. Ut enim ad minim veniam</p>
+</div>
+<div class="partners">
+<ul>
+<li><a href="#"><img class="img-responsive wow fadeInDown" src="../bundles/acmehome/images/partners/partner1.png" alt="" width="166" height="75" data-wow-duration="1000ms" data-wow-delay="300ms" /></a></li>
+<li><a href="#"><img class="img-responsive wow fadeInDown" src="../bundles/acmehome/images/partners/partner2.png" alt="" width="133" height="91" data-wow-duration="1000ms" data-wow-delay="600ms" /></a></li>
+<li><a href="#"><img class="img-responsive wow fadeInDown" src="../bundles/acmehome/images/partners/partner3.png" alt="" width="145" height="55" data-wow-duration="1000ms" data-wow-delay="900ms" /></a></li>
+<li><a href="#"><img class="img-responsive wow fadeInDown" src="../bundles/acmehome/images/partners/partner4.png" alt="" width="162" height="47" data-wow-duration="1000ms" data-wow-delay="1200ms" /></a></li>
+<li><a href="#"><img class="img-responsive wow fadeInDown" src="../bundles/acmehome/images/partners/partner5.png" alt="" width="140" height="88" data-wow-duration="1000ms" data-wow-delay="1500ms" /></a></li>
+</ul>
+</div>
+</div>
+<!--/.container--></section>
+<!--/#partner-->

@@ -1,0 +1,15 @@
+{{ include('header.html.twig') }}
+<body class="homepage">
+    {{ include('menu.html.twig') }}
+    
+    {% if app.request.attributes.get('_route') == "acme_home" %}    
+    
+        {{ include('slider.html.twig') }}
+        
+    {% endif %}    
+    
+    {% block body %}{% endblock %}
+
+    {{ include('footer.html.twig') }}
+</body>
+

@@ -1,0 +1,20 @@
+acme_image_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: AcmeImageBundle:Default:edit }
+
+acme_image_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: AcmeImageBundle:Default:delete }
+    
+acme_image_add:
+    pattern:  /add
+    defaults: { _controller: AcmeImageBundle:Default:add }
+
+addimage:
+    pattern:  /addimage
+    defaults: { _controller: AcmeImageBundle:Default:addimage }
+    
+acme_image:
+    pattern:  /
+    defaults: { _controller: AcmeImageBundle:Default:index }
+

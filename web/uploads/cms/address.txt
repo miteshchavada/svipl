@@ -1,0 +1,9 @@
+<div class="col-sm-7 map-content">
+<ul class="row">
+<li class="col-sm-6"><address>
+<h5>Head Office</h5>
+<p><strong>Siddhivinayak Infocom Pvt. Ltd.</strong><br /> 18, Navin Nagar Society,<br /> Opp. Shree Ram Banglow,<br /> Saurashtra Kala Kendra 2,<br /> Rajkot - 360 007. (Gujarat - India) </p>
+<p>Phone:+91 281 2577430 <br /> Email <a href="mailto:info@svipl.in">info@svipl.in</a></p>
+</address></li>
+</ul>
+</div>

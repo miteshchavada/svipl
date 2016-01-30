@@ -1,0 +1,127 @@
+acme_work_delete:
+    pattern:  /work/delete/{id}
+    defaults: { _controller: AcmeInfoBundle:Work:delete }
+
+acme_work_edit:
+    pattern:  /work/edit/{id}
+    defaults: { _controller: AcmeInfoBundle:Work:edit }
+
+acme_work_add:
+    pattern:  /work/add
+    defaults: { _controller: AcmeInfoBundle:Work:add }
+
+acme_info_work:
+    pattern:  /work
+    defaults: { _controller: AcmeInfoBundle:Work:index }
+
+acme_people_delete:
+    pattern:  /people/delete/{id}
+    defaults: { _controller: AcmeInfoBundle:People:delete }
+
+acme_people_edit:
+    pattern:  /people/edit/{id}
+    defaults: { _controller: AcmeInfoBundle:People:edit }
+
+acme_people_add:
+    pattern:  /people/add
+    defaults: { _controller: AcmeInfoBundle:People:add }
+
+acme_info_people:
+    pattern:  /people
+    defaults: { _controller: AcmeInfoBundle:People:index }
+
+acme_services_delete:
+    pattern:  /services/delete/{id}
+    defaults: { _controller: AcmeInfoBundle:Serviceslist:delete }
+
+acme_services_edit:
+    pattern:  /services/edit/{id}
+    defaults: { _controller: AcmeInfoBundle:Serviceslist:edit }
+
+acme_services_add:
+    pattern:  /services/add
+    defaults: { _controller: AcmeInfoBundle:Serviceslist:add }
+
+acme_info_serviceslist:
+    pattern:  /serviceslist
+    defaults: { _controller: AcmeInfoBundle:Serviceslist:index }
+
+acme_news_delete:
+    pattern:  /news/delete
+    defaults: { _controller: AcmeInfoBundle:Newslist:delete }
+
+acme_news_edit:
+    pattern:  /news/edit
+    defaults: { _controller: AcmeInfoBundle:Newslist:edit }
+
+acme_news_add:
+    pattern:  /news/add
+    defaults: { _controller: AcmeInfoBundle:Newslist:add }
+
+acme_info_newslist:
+    pattern:  /newslist
+    defaults: { _controller: AcmeInfoBundle:Newslist:index }
+
+acme_info_newslist:
+    pattern:  /info/newslist
+    defaults: { _controller: AcmeInfoBundle:Default:newslist }
+
+acme_testiedit:
+    pattern:  /testiedit/{id}
+    defaults: { _controller: AcmeInfoBundle:Default:testiedit }
+
+acme_testidel:
+    pattern:  /testidel/{id}
+    defaults: { _controller: AcmeInfoBundle:Default:testidel }
+
+acme_testiadd:
+    pattern:  /testiadd
+    defaults: { _controller: AcmeInfoBundle:Default:testiadd }
+
+acme_info_testimonials:
+    pattern:  /testimonials
+    defaults: { _controller: AcmeInfoBundle:Default:testimonials }
+
+acme_info_ourservice:
+    pattern:  /ourservice
+    defaults: { _controller: AcmeInfoBundle:Default:ourservice }
+
+acme_info_contactus:
+    pattern:  /contactus
+    defaults: { _controller: AcmeInfoBundle:Default:contactus }
+
+acme_info_delete:
+    pattern:  /delete
+    defaults: { _controller: AcmeInfoBundle:Default:delete }
+
+acme_info_edit:
+    pattern:  /edit
+    defaults: { _controller: AcmeInfoBundle:Default:edit }
+
+acme_info_add:
+    pattern:  /add
+    defaults: { _controller: AcmeInfoBundle:Default:add }
+
+acme_info_logo:
+    pattern:  /logo
+    defaults: { _controller: AcmeInfoBundle:Default:logo }    
+
+acme_logoadd:
+    pattern:  /logoadd
+    defaults: { _controller: AcmeInfoBundle:Default:logoadd }    
+
+logo_status:
+    pattern:  /logostatus
+    defaults: { _controller: AcmeInfoBundle:Default:logostatus }
+    
+acme_logoedit:
+    pattern:  /logoedit/{id}
+    defaults: { _controller: AcmeInfoBundle:Default:logoedit }
+
+acme_logodelete:
+    pattern:  /logodelete/{id}
+    defaults: { _controller: AcmeInfoBundle:Default:logodelete }    
+
+acme_info:
+    path:     /
+    defaults: { _controller: AcmeInfoBundle:Default:index }

@@ -1,0 +1,23 @@
+Acme\InfoBundle\Entity\Logo:
+    type: entity
+    table: null
+    repositoryClass: Acme\InfoBundle\Entity\LogoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        logo:
+            type: string
+            length: 255
+        status:
+            type: integer
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+    lifecycleCallbacks: {  }
