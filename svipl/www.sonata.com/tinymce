@@ -1,4 +1,0 @@
-for a twig template include
-
-{{ tinymce_init() }}
-<textarea class="tinymce"></textarea>
