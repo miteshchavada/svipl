@@ -107,20 +107,6 @@ database installation
 -------------------------------
 git package provide sonata.sql just import database 
 
-Get Vitual Host Entry 
--------------------------------
-<VirtualHost  *:80>
-        ServerAdmin sviplfive@gmail.com
-        DocumentRoot /var/www/html/www.sonata.com/web
-        ServerName mit.sonata.com
-        <Directory /var/www/html/www.sonata.com/web>
-                AllowOverride All
-                Options FollowSymlinks
-                Order Allow,Deny
-                Allow From All
-        </Directory>
-</VirtualHost>
-
 url for admin 
 -------------------------------
 mit.sonata.com/login
