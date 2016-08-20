@@ -108,7 +108,7 @@
                 </div>
                 {% for team in teams %}
                    <div class="row clearfix">
-                    <div class="col-md-4 col-sm-6">	
+                    <div class="col-md-12 col-sm-6">	
                         <div class="single-profile-top wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
                             <div class="media">
                                 <div class="pull-left">
@@ -118,15 +118,12 @@
                                     <h4>{{ team.name }}</h4>
                                     <h5>{{ team.designation }}</h5>
                                     <ul class="tag clearfix">
+                                        {% set skill = '' %}
                                         {% set skills = team.skills|split(',') %}
-                                        {% set dayMap = {1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday', 7: 'Sunday'} %}
-                                        {% for s in dayMap %}
-                                            {{ s }}
-                                        {% endfor %}    
-                                        <li class="btn"><a href="#">Web</a></li>
-                                        <li class="btn"><a href="#">Ui</a></li>
-                                        <li class="btn"><a href="#">Ux</a></li>
-                                        <li class="btn"><a href="#">Photoshop</a></li>
+                                        {% for keys,skill in skills %}
+                                            {% set dayMap = {0: 'WEB', 1: 'UI', 2: 'UX', 3: 'PHOTOSHOP', 4: 'SYMFONY1.0'} %}
+					    <li class="btn"><a href="#">{{ dayMap[skill] }}</a></li>	
+                                        {% endfor %}
                                     </ul>
 
                                     <ul class="social_icons">
@@ -141,8 +138,9 @@
                                         {% endif %}
                                     </ul>
                                 </div>
+				<p>{{ team.description }}</p>
                             </div><!--/.media -->
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                            
                         </div>
                     </div><!--/.col-lg-4 -->
                    </div>

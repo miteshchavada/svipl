@@ -12,7 +12,7 @@ use Acme\StoreBundle\Entity\Product;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 class DefaultController extends Controller
 {
     public function indexAction(Request $request)
@@ -55,6 +55,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
+	    $this->get('session')->getFlashBag()->set('success', 'Your Record Add Successfully');	
             return $this->redirect($this->generateUrl('acme_category'));
         }
         return $this->render('AcmeCategoryBundle:Default:add.html.twig',array('form' => $form->createView()));
@@ -86,6 +87,7 @@ class DefaultController extends Controller
             $categorys->setStatus($a['status']);
             $em->persist($categorys);
             $em->flush();
+	    $this->get('session')->getFlashBag()->set('success', 'Your Record Update Successfully');
             return $this->redirect($this->generateUrl('acme_category'));
         }else{
             return $this->render('AcmeCategoryBundle:Default:edit.html.twig', array('form' => $form->createView(),'id'=>$id,'category'=>$category));
@@ -101,6 +103,7 @@ class DefaultController extends Controller
             $stat = $categoryStatus->getStatus();
             if($stat == '1')
             {
+		    $status = "Disable";	
                     $em = $this->getDoctrine()->getManager();
                     $category = $em->getRepository('AcmeCategoryBundle:Category')->find($id);
                     $category->setStatus('0');
@@ -108,13 +111,14 @@ class DefaultController extends Controller
             }
             else
             {
+		    $status = "Enable";	
                     $em = $this->getDoctrine()->getManager();
                     $category = $em->getRepository('AcmeCategoryBundle:Category')->find($id);
                     $category->setStatus('1');
                     $em->flush();
             }
             //echo "true";
-            $response = array("code" => 100, "success" => true, "status" => $categoryStatus->getStatus(), "id" => $categoryStatus->getId());
+            $response = array("code" => 100, "success" => true, "status" => $categoryStatus->getStatus(), "id" => $categoryStatus->getId(), 'success' => $this->get('session')->getFlashBag()->set('success', 'Your '.$category->getName().' Status '.$status.' Successfully'));
             return new Response(json_encode($response)); 
     }
     

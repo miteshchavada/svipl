@@ -1,5 +1,5 @@
 acme_home:
-    path:     /home/
+    path:     /
     defaults: { _controller: AcmeHomeBundle:Default:index }
 
 aboutus:

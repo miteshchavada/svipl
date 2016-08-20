@@ -89,6 +89,7 @@
                             <li><a href="{{ path('acme_info_people') }}"><i class="fa fa-envelope fa-fw"></i>Why people like us</a></li>
                             <li><a href="{{ path('acme_info_work') }}"><i class="fa fa-envelope fa-fw"></i>Work</a></li>
                             <li><a href="{{ path('acme_info_testimonials') }}"><i class="fa fa-wrench fa-fw"></i>Testimonials</a></li>
+                            <li><a href="{{ path('acme_team') }}"><i class="fa fa-wrench fa-fw"></i>Team</a></li>
                         {% endif %}    
                         <li><a href="{{ path('acme_category') }}"><i class="fa fa-dashboard fa-fw"></i>Category</a></li>
                         <li><a href="{{ path('acme_store') }}"><i class="fa fa-dashboard fa-fw"></i>Store</a></li>
@@ -151,6 +152,7 @@
                         }else{
                             $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
                         }
+			window.location.reload();
                     },
                     error: function(e){
                         alert(e);
@@ -174,8 +176,9 @@
                         if(result.status == true){
                             $("a#"+result.id).removeClass("btn-danger").addClass("btn-success").html("Enable");
                         }else{
-                            $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
+                            $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");
                         }
+			window.location.reload();
                     },
                     error: function(e){
                         alert(e);
@@ -205,6 +208,7 @@
                         }else{
                             $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
                         }
+			window.location.reload();
                     },
                     error: function(e){
                         alert(e);
@@ -227,7 +231,8 @@
                             $("a#"+result.id).removeClass("btn-danger").addClass("btn-success").html("Enable");
                         }else{
                             $("a#"+result.id).removeClass("btn-success").addClass("btn-danger").html("Disabled");;
-                        }
+                        }	
+			window.location.reload();
                     },
                     error: function(e){
                         alert(e);

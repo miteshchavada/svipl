@@ -163,6 +163,8 @@
   'AcmeFooterBundle:Default:whyus.html.twig' => '/var/www/html/www.sonata.com/src/Acme/FooterBundle/Resources/views/Default/whyus.html.twig',
   'AcmeFooterBundle:Default:followusedit.html.twig' => '/var/www/html/www.sonata.com/src/Acme/FooterBundle/Resources/views/Default/followusedit.html.twig',
   'AcmeTeamBundle:Default:index.html.twig' => '/var/www/html/www.sonata.com/src/Acme/TeamBundle/Resources/views/Default/index.html.twig',
+  'AcmeTeamBundle:Default:edit.html.twig' => '/var/www/html/www.sonata.com/src/Acme/TeamBundle/Resources/views/Default/edit.html.twig',
+  'AcmeTeamBundle:Default:add.html.twig' => '/var/www/html/www.sonata.com/src/Acme/TeamBundle/Resources/views/Default/add.html.twig',
   'AcmeDemoBundle:Demo:index.html.twig' => '/var/www/html/www.sonata.com/src/Acme/DemoBundle/Resources/views/Demo/index.html.twig',
   'AcmeDemoBundle:Demo:hello.html.twig' => '/var/www/html/www.sonata.com/src/Acme/DemoBundle/Resources/views/Demo/hello.html.twig',
   'AcmeDemoBundle:Demo:contact.html.twig' => '/var/www/html/www.sonata.com/src/Acme/DemoBundle/Resources/views/Demo/contact.html.twig',

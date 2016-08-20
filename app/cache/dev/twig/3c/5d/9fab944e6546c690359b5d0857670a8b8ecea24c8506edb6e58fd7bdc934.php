@@ -132,7 +132,7 @@ class __TwigTemplate_3c5d9fab944e6546c690359b5d0857670a8b8ecea24c8506edb6e58fd7b
         foreach ($context['_seq'] as $context["_key"] => $context["team"]) {
             // line 110
             echo "                   <div class=\"row clearfix\">
-                    <div class=\"col-md-4 col-sm-6\">\t
+                    <div class=\"col-md-12 col-sm-6\">\t
                         <div class=\"single-profile-top wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\">
                             <div class=\"media\">
                                 <div class=\"pull-left\">
@@ -153,65 +153,67 @@ class __TwigTemplate_3c5d9fab944e6546c690359b5d0857670a8b8ecea24c8506edb6e58fd7b
                                     <ul class=\"tag clearfix\">
                                         ";
             // line 121
-            $context["skills"] = twig_split_filter($this->getAttribute($this->getContext($context, "team"), "skills"), ",");
+            $context["skill"] = "";
             // line 122
             echo "                                        ";
-            $context["dayMap"] = array(1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 7 => "Sunday");
+            $context["skills"] = twig_split_filter($this->getAttribute($this->getContext($context, "team"), "skills"), ",");
             // line 123
             echo "                                        ";
             $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable($this->getContext($context, "dayMap"));
-            foreach ($context['_seq'] as $context["_key"] => $context["s"]) {
+            $context['_seq'] = twig_ensure_traversable($this->getContext($context, "skills"));
+            foreach ($context['_seq'] as $context["keys"] => $context["skill"]) {
                 // line 124
                 echo "                                            ";
-                echo twig_escape_filter($this->env, $this->getContext($context, "s"), "html", null, true);
-                echo "
+                $context["dayMap"] = array(0 => "WEB", 1 => "UI", 2 => "UX", 3 => "PHOTOSHOP", 4 => "SYMFONY1.0");
+                // line 125
+                echo "\t\t\t\t\t    <li class=\"btn\"><a href=\"#\">";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "dayMap"), $this->getContext($context, "skill"), array(), "array"), "html", null, true);
+                echo "</a></li>\t
                                         ";
             }
             $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['s'], $context['_parent'], $context['loop']);
+            unset($context['_seq'], $context['_iterated'], $context['keys'], $context['skill'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 125
-            echo "    
-                                        <li class=\"btn\"><a href=\"#\">Web</a></li>
-                                        <li class=\"btn\"><a href=\"#\">Ui</a></li>
-                                        <li class=\"btn\"><a href=\"#\">Ux</a></li>
-                                        <li class=\"btn\"><a href=\"#\">Photoshop</a></li>
-                                    </ul>
+            // line 127
+            echo "                                    </ul>
 
                                     <ul class=\"social_icons\">
                                         ";
-            // line 133
+            // line 130
             if ($this->getAttribute($this->getContext($context, "team"), "facebook")) {
-                // line 134
+                // line 131
                 echo "                                        <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "team"), "facebook"), "html", null, true);
                 echo "\" target=\"_blank\"><i class=\"fa fa-facebook\"></i></a></li>
                                         ";
             }
-            // line 136
+            // line 133
             echo "                                        ";
             if ($this->getAttribute($this->getContext($context, "team"), "twitter")) {
-                // line 137
+                // line 134
                 echo "                                        <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "team"), "twitter"), "html", null, true);
                 echo "\" target=\"_blank\"><i class=\"fa fa-twitter\"></i></a></li> 
                                         ";
             }
-            // line 139
+            // line 136
             echo "                                        ";
             if ($this->getAttribute($this->getContext($context, "team"), "gmail")) {
-                // line 140
+                // line 137
                 echo "                                        <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "team"), "gmail"), "html", null, true);
                 echo "\" target=\"_blank\"><i class=\"fa fa-google-plus\"></i></a></li>
                                         ";
             }
-            // line 142
+            // line 139
             echo "                                    </ul>
                                 </div>
+\t\t\t\t<p>";
+            // line 141
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "team"), "description"), "html", null, true);
+            echo "</p>
                             </div><!--/.media -->
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                            
                         </div>
                     </div><!--/.col-lg-4 -->
                    </div>
@@ -237,10 +239,10 @@ class __TwigTemplate_3c5d9fab944e6546c690359b5d0857670a8b8ecea24c8506edb6e58fd7b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['team'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 166
+        // line 164
         echo "    
                 ";
-        // line 293
+        // line 291
         echo "            </div><!--section-->
         </div><!--/.container-->
     </section><!--/about-us-->
@@ -259,6 +261,6 @@ class __TwigTemplate_3c5d9fab944e6546c690359b5d0857670a8b8ecea24c8506edb6e58fd7b
 
     public function getDebugInfo()
     {
-        return array (  244 => 293,  241 => 166,  211 => 142,  205 => 140,  202 => 139,  196 => 137,  193 => 136,  187 => 134,  185 => 133,  175 => 125,  166 => 124,  161 => 123,  158 => 122,  156 => 121,  151 => 119,  147 => 118,  141 => 115,  134 => 110,  130 => 109,  118 => 99,  115 => 61,  104 => 57,  100 => 56,  95 => 53,  91 => 52,  64 => 28,  58 => 25,  52 => 22,  31 => 3,  28 => 2,);
+        return array (  246 => 291,  243 => 164,  213 => 141,  209 => 139,  203 => 137,  200 => 136,  194 => 134,  191 => 133,  185 => 131,  183 => 130,  178 => 127,  169 => 125,  166 => 124,  161 => 123,  158 => 122,  156 => 121,  151 => 119,  147 => 118,  141 => 115,  134 => 110,  130 => 109,  118 => 99,  115 => 61,  104 => 57,  100 => 56,  95 => 53,  91 => 52,  64 => 28,  58 => 25,  52 => 22,  31 => 3,  28 => 2,);
     }
 }

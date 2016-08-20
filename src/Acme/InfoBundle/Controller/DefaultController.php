@@ -16,7 +16,7 @@ use Acme\InfoBundle\Entity\Testimonials;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
@@ -59,6 +59,7 @@ class DefaultController extends Controller
                 $info->setPercentage($a['percentage']);
                 $em->persist($info);
                 $em->flush();
+		$this->get('session')->getFlashBag()->set('success', 'Info Add Successfully');
                 return $this->redirect($this->generateUrl('acme_info'));
             }
         }
@@ -97,6 +98,7 @@ class DefaultController extends Controller
                 $info->setPercentage($a['percentage']);
                 $em->persist($info);
                 $em->flush();
+		$this->get('session')->getFlashBag()->set('success', 'Info Update Successfully');
                 return $this->redirect($this->generateUrl('acme_info'));
             }
         }
@@ -109,6 +111,7 @@ class DefaultController extends Controller
         $info = $em->getRepository('AcmeInfoBundle:Info')->find($id);
         $em->remove($info);
         $em->flush();
+	$this->get('session')->getFlashBag()->set('notice', 'Your Record Delete Successfully');
         return $this->redirect($this->generateUrl('acme_info'));
     }
     public function ourserviceAction(Request $request)
@@ -123,6 +126,7 @@ class DefaultController extends Controller
                 $front->setDescription($request->get('description'));
                 $em->persist($front);
                 $em->flush();
+		$this->get('session')->getFlashBag()->set('notice', 'Features Update Successfully');		
 		return $this->render('AcmeInfoBundle:Default:ourservice.html.twig', array('front' => $front));
 	}
 	return $this->render('AcmeInfoBundle:Default:ourservice.html.twig', array('front' => $front));
@@ -139,6 +143,7 @@ class DefaultController extends Controller
                 $contactus->setDescription($request->get('description'));
                 $em->persist($contactus);
                 $em->flush();
+		$this->get('session')->getFlashBag()->set('notice', 'ContactUs Update Successfully');
 		return $this->render('AcmeInfoBundle:Default:contactus.html.twig', array('contactus' => $contactus));
 	}
 	return $this->render('AcmeInfoBundle:Default:contactus.html.twig', array('contactus' => $contactus));
@@ -192,6 +197,7 @@ class DefaultController extends Controller
                 $dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/testimonials/'.$testimonial->getId();
                 mkdir($dir);
                 $form->get('image')->getData()->move($dir,$img);
+		$this->get('session')->getFlashBag()->set('notice', 'Your Record Add Successfully');
                 return $this->redirect($this->generateUrl('acme_info_testimonials'));
 	    }
 	}
@@ -209,6 +215,7 @@ class DefaultController extends Controller
         	unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/testimonials/'.$id.'/'.$info->getImage());
                 rmdir($_SERVER['DOCUMENT_ROOT'].'/uploads/testimonials/'.$id);
         }
+	$this->get('session')->getFlashBag()->set('notice', 'Your Record Delete Successfully');
         return $this->redirect($this->generateUrl('acme_info_testimonials'));	
     }
 
@@ -256,6 +263,7 @@ class DefaultController extends Controller
                 $info->setDescription($a['description']);
                 $em->persist($info);
                 $em->flush();
+		$this->get('session')->getFlashBag()->set('success', 'Your Record Update Successfully');
                 return $this->redirect($this->generateUrl('acme_info_testimonials'));
                 }
             }
@@ -305,6 +313,7 @@ class DefaultController extends Controller
                $em->persist($image);
                $em->flush();
                $form->get('logo')->getData()->move($dir,$og_image);
+	       $this->get('session')->getFlashBag()->set('success', 'Your Logo Add Successfully');	
                return $this->redirect($this->generateUrl('acme_info_logo'));
                }
         }
@@ -320,18 +329,22 @@ class DefaultController extends Controller
             $stat = $logoStatus->getStatus();
             if($stat == '1')
             {
+		    $status = "Disable";
                     $em = $this->getDoctrine()->getManager();
                     $logo = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
                     $logo->setStatus('0');
                     $em->flush();
+		    $this->get('session')->getFlashBag()->set('success', 'Your Logo Status '.$status.' Successfully');
             }
             else
             {
+		    $status = "Enable";
                     if(!count($logo)>=1){
                         $em = $this->getDoctrine()->getManager();
                         $logo = $em->getRepository('AcmeInfoBundle:Logo')->find($id);
                         $logo->setStatus('1');
                         $em->flush();
+			$this->get('session')->getFlashBag()->set('success', 'Your Logo Status '.$status.' Successfully');
                     }else{
                         return new Response("1");
                     }
@@ -382,8 +395,10 @@ class DefaultController extends Controller
                     }
                     $em->flush();
                     $form->get('logo')->getData()->move($dir,$new_image);
+		    $this->get('session')->getFlashBag()->set('success', 'Your Logo Update Successfully');	
                     return $this->redirect($this->generateUrl('acme_info_logo'));
-                }else{
+                }else{	
+		    $this->get('session')->getFlashBag()->set('success', 'Your Logo Update Successfully');	
                     return $this->redirect($this->generateUrl('acme_info_logo'));
                 }
             }
@@ -399,6 +414,7 @@ class DefaultController extends Controller
         $em->remove($image);
         $em->flush();
         unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/logo/'.$image->getLogo());
+	$this->get('session')->getFlashBag()->add('notice','Logo Delete Successfully !');
         return $this->redirect($this->generateUrl('acme_info_logo'));
     }
 }

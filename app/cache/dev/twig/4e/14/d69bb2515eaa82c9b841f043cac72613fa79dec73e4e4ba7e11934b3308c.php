@@ -188,99 +188,103 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                 // line 91
                 echo $this->env->getExtension('routing')->getPath("acme_info_testimonials");
                 echo "\"><i class=\"fa fa-wrench fa-fw\"></i>Testimonials</a></li>
+                            <li><a href=\"";
+                // line 92
+                echo $this->env->getExtension('routing')->getPath("acme_team");
+                echo "\"><i class=\"fa fa-wrench fa-fw\"></i>Team</a></li>
                         ";
             }
-            // line 92
+            // line 93
             echo "    
                         <li><a href=\"";
-            // line 93
+            // line 94
             echo $this->env->getExtension('routing')->getPath("acme_category");
             echo "\"><i class=\"fa fa-dashboard fa-fw\"></i>Category</a></li>
                         <li><a href=\"";
-            // line 94
+            // line 95
             echo $this->env->getExtension('routing')->getPath("acme_store");
             echo "\"><i class=\"fa fa-dashboard fa-fw\"></i>Store</a></li>
                         ";
-            // line 95
+            // line 96
             if ($this->env->getExtension('security')->isGranted("ROLE_ADMIN")) {
                 echo " \t
                         <li><a href=\"";
-                // line 96
+                // line 97
                 echo $this->env->getExtension('routing')->getPath("acme_info_newslist");
                 echo "\"><i class=\"fa fa-files-o fa-fw\"></i>News</a></li>
                         <li><a href=\"";
-                // line 97
+                // line 98
                 echo $this->env->getExtension('routing')->getPath("acme_info_contactus");
                 echo "\"><i class=\"fa fa-bell fa-fw\"></i>ContactUs</a></li>
                         <li><a href=\"";
-                // line 98
+                // line 99
                 echo $this->env->getExtension('routing')->getPath("acme_footer");
                 echo "\"><i class=\"fa fa-bell fa-fw\"></i>Footer</a></li>
                         <li><a href=\"";
-                // line 99
+                // line 100
                 echo $this->env->getExtension('routing')->getPath("acme_store_orders");
                 echo "\"><i class=\"fa fa-wrench fa-fw\"></i>Orders</a></li>
                         ";
             }
-            // line 100
+            // line 101
             echo "    
                     </ul>
                 </div>
             </div>
             ";
         }
-        // line 104
+        // line 105
         echo "        
         </nav>
 
         <div id=\"page-wrapper\">
             ";
-        // line 108
-        $this->displayBlock('body', $context, $blocks);
         // line 109
+        $this->displayBlock('body', $context, $blocks);
+        // line 110
         echo "        </div>
 
     </div>
     <!-- jQuery Version 1.11.0 -->
     <script src=\"";
-        // line 113
+        // line 114
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/jquery-1.11.0.js"), "html", null, true);
         echo "\"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src=\"";
-        // line 115
+        // line 116
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src=\"";
-        // line 117
+        // line 118
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/plugins/metisMenu/metisMenu.min.js"), "html", null, true);
         echo "\"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src=\"";
-        // line 120
+        // line 121
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
     <!-- DataTables JavaScript -->
     <script src=\"";
-        // line 122
+        // line 123
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/plugins/dataTables/jquery.dataTables.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 123
+        // line 124
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/plugins/dataTables/dataTables.bootstrap.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 124
+        // line 125
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/jquery.validate.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 125
+        // line 126
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/jquery.validate.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 126
+        // line 127
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/acmeuser/js/common.js"), "html", null, true);
         echo "\"></script>
     
@@ -297,7 +301,7 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                 id = \$(this).attr('id');
                 \$.ajax({
                     url: \"";
-        // line 140
+        // line 141
         echo $this->env->getExtension('routing')->getPath("acme_user_status");
         echo "\",
                     type: \"POST\",
@@ -313,6 +317,7 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                         }else{
                             \$(\"a#\"+result.id).removeClass(\"btn-success\").addClass(\"btn-danger\").html(\"Disabled\");;
                         }
+\t\t\twindow.location.reload();
                     },
                     error: function(e){
                         alert(e);
@@ -325,7 +330,7 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                 id = \$(this).attr('id');
                 \$.ajax({
                     url: \"";
-        // line 165
+        // line 167
         echo $this->env->getExtension('routing')->getPath("category_status");
         echo "\",
                     type: \"POST\",
@@ -339,8 +344,9 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                         if(result.status == true){
                             \$(\"a#\"+result.id).removeClass(\"btn-danger\").addClass(\"btn-success\").html(\"Enable\");
                         }else{
-                            \$(\"a#\"+result.id).removeClass(\"btn-success\").addClass(\"btn-danger\").html(\"Disabled\");;
+                            \$(\"a#\"+result.id).removeClass(\"btn-success\").addClass(\"btn-danger\").html(\"Disabled\");
                         }
+\t\t\twindow.location.reload();
                     },
                     error: function(e){
                         alert(e);
@@ -354,7 +360,7 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                 id = \$(this).attr('id');
                 \$.ajax({
                     url: \"";
-        // line 191
+        // line 194
         echo $this->env->getExtension('routing')->getPath("logo_status");
         echo "\",
                     type: \"POST\",
@@ -373,6 +379,7 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                         }else{
                             \$(\"a#\"+result.id).removeClass(\"btn-success\").addClass(\"btn-danger\").html(\"Disabled\");;
                         }
+\t\t\twindow.location.reload();
                     },
                     error: function(e){
                         alert(e);
@@ -383,7 +390,7 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                 id = \$(this).attr('id');
                 \$.ajax({
                     url: \"";
-        // line 217
+        // line 221
         echo $this->env->getExtension('routing')->getPath("follow_status");
         echo "\",
                     type: \"POST\",
@@ -398,7 +405,8 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
                             \$(\"a#\"+result.id).removeClass(\"btn-danger\").addClass(\"btn-success\").html(\"Enable\");
                         }else{
                             \$(\"a#\"+result.id).removeClass(\"btn-success\").addClass(\"btn-danger\").html(\"Disabled\");;
-                        }
+                        }\t
+\t\t\twindow.location.reload();
                     },
                     error: function(e){
                         alert(e);
@@ -414,7 +422,7 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
 ";
     }
 
-    // line 108
+    // line 109
     public function block_body($context, array $blocks = array())
     {
     }
@@ -431,6 +439,6 @@ class __TwigTemplate_4e14d69bb2515eaa82c9b841f043cac72613fa79dec73e4e4ba7e11934b
 
     public function getDebugInfo()
     {
-        return array (  418 => 108,  387 => 217,  358 => 191,  329 => 165,  301 => 140,  284 => 126,  280 => 125,  276 => 124,  272 => 123,  268 => 122,  263 => 120,  257 => 117,  252 => 115,  247 => 113,  241 => 109,  239 => 108,  233 => 104,  226 => 100,  221 => 99,  217 => 98,  213 => 97,  209 => 96,  205 => 95,  201 => 94,  197 => 93,  194 => 92,  189 => 91,  185 => 90,  181 => 89,  177 => 88,  173 => 87,  169 => 86,  165 => 85,  161 => 84,  156 => 83,  154 => 82,  149 => 79,  147 => 78,  138 => 72,  132 => 69,  127 => 67,  122 => 65,  118 => 63,  112 => 61,  110 => 60,  95 => 51,  86 => 49,  84 => 48,  57 => 24,  51 => 21,  45 => 18,  40 => 16,  36 => 15,  20 => 1,  125 => 42,  108 => 39,  104 => 38,  100 => 52,  96 => 36,  92 => 50,  88 => 34,  85 => 33,  68 => 32,  38 => 4,  32 => 3,  29 => 2,);
+        return array (  426 => 109,  394 => 221,  364 => 194,  334 => 167,  305 => 141,  288 => 127,  284 => 126,  280 => 125,  276 => 124,  272 => 123,  267 => 121,  261 => 118,  256 => 116,  251 => 114,  245 => 110,  243 => 109,  237 => 105,  230 => 101,  225 => 100,  221 => 99,  217 => 98,  213 => 97,  209 => 96,  205 => 95,  201 => 94,  198 => 93,  193 => 92,  189 => 91,  185 => 90,  181 => 89,  177 => 88,  173 => 87,  169 => 86,  165 => 85,  161 => 84,  156 => 83,  154 => 82,  149 => 79,  147 => 78,  138 => 72,  132 => 69,  127 => 67,  122 => 65,  118 => 63,  112 => 61,  110 => 60,  100 => 52,  95 => 51,  92 => 50,  86 => 49,  84 => 48,  57 => 24,  51 => 21,  45 => 18,  40 => 16,  36 => 15,  20 => 1,);
     }
 }

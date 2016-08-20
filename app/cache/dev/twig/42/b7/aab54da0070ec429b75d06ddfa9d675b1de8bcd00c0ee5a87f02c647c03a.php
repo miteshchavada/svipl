@@ -19,9 +19,9 @@ class __TwigTemplate_42b7aab54da0070ec429b75d06ddfa9d675b1de8bcd00c0ee5a87f02c64
         if ($this->getAttribute($this->getContext($context, "trace"), "function")) {
             // line 2
             echo "    at ";
-            echo twig_escape_filter($this->env, (($this->getAttribute($this->getContext($context, "trace"), "class") . $this->getAttribute($this->getContext($context, "trace"), "type")) . $this->getAttribute($this->getContext($context, "trace"), "function")), "html", null, true);
+            echo (($this->getAttribute($this->getContext($context, "trace"), "class") . $this->getAttribute($this->getContext($context, "trace"), "type")) . $this->getAttribute($this->getContext($context, "trace"), "function"));
             echo "(";
-            echo twig_escape_filter($this->env, $this->env->getExtension('code')->formatArgsAsText($this->getAttribute($this->getContext($context, "trace"), "args")), "html", null, true);
+            echo $this->env->getExtension('code')->formatArgsAsText($this->getAttribute($this->getContext($context, "trace"), "args"));
             echo ")
 ";
         } else {
@@ -33,9 +33,9 @@ class __TwigTemplate_42b7aab54da0070ec429b75d06ddfa9d675b1de8bcd00c0ee5a87f02c64
         if (($this->getAttribute($this->getContext($context, "trace", true), "file", array(), "any", true, true) && $this->getAttribute($this->getContext($context, "trace", true), "line", array(), "any", true, true))) {
             // line 7
             echo "        in ";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "trace"), "file"), "html", null, true);
+            echo $this->getAttribute($this->getContext($context, "trace"), "file");
             echo " line ";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "trace"), "line"), "html", null, true);
+            echo $this->getAttribute($this->getContext($context, "trace"), "line");
             echo "
 ";
         }

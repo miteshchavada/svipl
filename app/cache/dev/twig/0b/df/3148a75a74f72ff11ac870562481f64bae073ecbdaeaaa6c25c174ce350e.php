@@ -52,7 +52,44 @@ class __TwigTemplate_0bdf3148a75a74f72ff11ac870562481f64bae073ecbdaeaaa6c25c174c
                         <!-- /.panel-heading -->
                         <div class=\"panel-body\">
                             <div class=\"table-responsive\">
-                                <table class=\"table table-striped table-bordered table-hover\" id=\"dataTables-example1\">
+\t\t\t\t";
+        // line 21
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "flashbag"), "get", array(0 => "success"), "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
+            // line 22
+            echo "\t\t\t\t    <div class=\"alert alert-success\" id=\"success\">\t
+\t\t\t\t\t<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>
+\t\t\t\t\t    ";
+            // line 24
+            echo twig_escape_filter($this->env, $this->getContext($context, "flashMessage"), "html", null, true);
+            echo "
+                                    </div>\t\t\t\t\t
+\t\t\t\t";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flashMessage'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 27
+        echo "                                ";
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "flashbag"), "get", array(0 => "notice"), "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
+            // line 28
+            echo "                                    <div class=\"alert alert-danger\"> 
+\t\t\t\t\t<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>
+                                        ";
+            // line 30
+            echo twig_escape_filter($this->env, $this->getContext($context, "flashMessage"), "html", null, true);
+            echo "
+                                    </div>
+                                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flashMessage'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 33
+        echo "                                <table class=\"table table-striped table-bordered table-hover\" id=\"dataTables-example1\">
                                     <thead>
                                         <tr>
                                             <th>Serial No</th>
@@ -64,7 +101,7 @@ class __TwigTemplate_0bdf3148a75a74f72ff11ac870562481f64bae073ecbdaeaaa6c25c174c
                                     </thead>
                                     <tbody>
 \t\t\t\t\t";
-        // line 32
+        // line 44
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, "info"));
         $context['loop'] = array(
@@ -81,30 +118,30 @@ class __TwigTemplate_0bdf3148a75a74f72ff11ac870562481f64bae073ecbdaeaaa6c25c174c
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["inf"]) {
-            // line 33
+            // line 45
             echo "\t\t\t\t\t<tr class=\"gradeA\">
 \t\t\t\t\t    <td>";
-            // line 34
+            // line 46
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "loop"), "index"), "html", null, true);
             echo "</td>
 \t\t\t\t\t    <td>";
-            // line 35
+            // line 47
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "inf"), "title"), "html", null, true);
             echo "</td>
 \t\t\t\t\t    <td width=\"400px;\">";
-            // line 36
+            // line 48
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "inf"), "percentage"), "html", null, true);
             echo "</td>
                                             <td>";
-            // line 37
+            // line 49
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($this->getContext($context, "inf"), "createdAt")), "html", null, true);
             echo "</td>
 \t\t\t\t\t    <td><a href=\"";
-            // line 38
+            // line 50
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("acme_info_edit", array("id" => $this->getAttribute($this->getContext($context, "inf"), "id"))), "html", null, true);
             echo "\" class=\"btn btn-primary\">edit</a>
 \t\t\t\t\t    <a href=\"";
-            // line 39
+            // line 51
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("acme_info_delete", array("id" => $this->getAttribute($this->getContext($context, "inf"), "id"))), "html", null, true);
             echo "\" onclick=\"return confirm('are sure delete?')\" class=\"btn btn-danger\">delete</a></td>
 \t\t\t\t\t</tr>
@@ -121,7 +158,7 @@ class __TwigTemplate_0bdf3148a75a74f72ff11ac870562481f64bae073ecbdaeaaa6c25c174c
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['inf'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
+        // line 54
         echo "\t\t\t\t   </tbody>
 \t\t\t\t</tr>
 \t\t\t\t</table>
@@ -148,6 +185,6 @@ class __TwigTemplate_0bdf3148a75a74f72ff11ac870562481f64bae073ecbdaeaaa6c25c174c
 
     public function getDebugInfo()
     {
-        return array (  125 => 42,  108 => 39,  104 => 38,  100 => 37,  96 => 36,  92 => 35,  88 => 34,  85 => 33,  68 => 32,  38 => 4,  32 => 3,  29 => 2,);
+        return array (  162 => 54,  145 => 51,  141 => 50,  137 => 49,  133 => 48,  129 => 47,  125 => 46,  122 => 45,  105 => 44,  92 => 33,  83 => 30,  79 => 28,  74 => 27,  65 => 24,  61 => 22,  57 => 21,  38 => 4,  32 => 3,  29 => 2,);
     }
 }

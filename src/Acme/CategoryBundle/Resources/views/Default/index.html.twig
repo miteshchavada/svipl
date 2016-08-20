@@ -17,8 +17,15 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
+				{% for flashMessage in app.session.flashbag.get('success') %}
+				    <div class="alert alert-success" id="success">	
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					    {{ flashMessage }}
+                                    </div>					
+				{% endfor %}
                                 {% for flashMessage in app.session.flashbag.get('notice') %}
                                     <div class="alert alert-danger"> 
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                         {{ flashMessage }}
                                     </div>
                                 {% endfor %}

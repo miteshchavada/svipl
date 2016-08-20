@@ -31,16 +31,20 @@ class DefaultController extends Controller
             $stat = $userStatus->isEnabled();
             if($stat == '1')
             {
+		    $status = "Disable";
                     $em = $this->getDoctrine()->getManager();
                     $product = $em->getRepository('AcmeUserBundle:User')->find($id);
                     $product->setEnabled('0');
+		    $this->get('session')->getFlashBag()->set('success', 'User '.$product->getUsername().' Status '.$status.' Successfully');	
                     $em->flush();
             }
             else
             {
+		    $status = "Enable";
                     $em = $this->getDoctrine()->getManager();
                     $product = $em->getRepository('AcmeUserBundle:User')->find($id);
                     $product->setEnabled('1');
+		    $this->get('session')->getFlashBag()->set('success', 'User '.$product->getUsername().' Status '.$status.' Successfully');	
                     $em->flush();
             }
             //echo "true";

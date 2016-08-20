@@ -31,6 +31,12 @@
                             Users List
                         </div>
                     </div>
+   		    {% for flashMessage in app.session.flashbag.get('success') %}
+		    <div class="alert alert-success" id="success">	
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    {{ flashMessage }}
+                    </div>					
+		    {% endfor %}	
                     {% for flashMessage in app.session.flashbag.get('notice') %}
                         <div class="alert alert-danger"> 
                             {{ flashMessage }}

@@ -339,7 +339,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // acme_home
-        if (rtrim($pathinfo, '/') === '/home') {
+        if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'acme_home');
             }
@@ -709,28 +709,31 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_fos_user_change_password:
 
-        // acme_user_edit
-        if (0 === strpos($pathinfo, '/edit') && preg_match('#^/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_user_edit')), array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::editAction',));
-        }
-
-        // acme_user_delete
-        if (0 === strpos($pathinfo, '/delete') && preg_match('#^/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_user_delete')), array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::deleteAction',));
-        }
-
-        // acme_user_status
-        if ($pathinfo === '/status') {
-            return array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::statusAction',  '_route' => 'acme_user_status',);
-        }
-
-        // acme_user
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'acme_user');
+        if (0 === strpos($pathinfo, '/user')) {
+            // acme_user_edit
+            if (0 === strpos($pathinfo, '/user/edit') && preg_match('#^/user/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_user_edit')), array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::editAction',));
             }
 
-            return array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'acme_user',);
+            // acme_user_delete
+            if (0 === strpos($pathinfo, '/user/delete') && preg_match('#^/user/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_user_delete')), array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::deleteAction',));
+            }
+
+            // acme_user_status
+            if ($pathinfo === '/user/status') {
+                return array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::statusAction',  '_route' => 'acme_user_status',);
+            }
+
+            // acme_user
+            if (rtrim($pathinfo, '/') === '/user') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'acme_user');
+                }
+
+                return array (  '_controller' => 'Acme\\UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'acme_user',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/category')) {

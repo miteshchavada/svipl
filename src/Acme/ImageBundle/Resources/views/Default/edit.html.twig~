@@ -1,0 +1,18 @@
+<center>
+{{ form_errors(form.image)}}
+{{ form_start(form) }}
+
+
+   <img src="{{asset(['uploads/', image]|join)}}" style="width:80px; height: 50px;" />
+   
+
+    <div>
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image)}}
+    </div>
+    <div>
+	<input type="submit" formnovalidate value="Edit" name="edit" />
+	<input type="reset" value="Reset"/>
+</div>
+{{ form_end(form) }}
+</center>
